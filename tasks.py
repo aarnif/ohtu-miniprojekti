@@ -16,3 +16,7 @@ def test_unit(ctx):
 @task
 def test_e2e(ctx):
     ctx.run("robot --variable HEADLESS:true src/story_tests", pty=True)
+
+@task
+def format(ctx):
+    ctx.run("autopep8 --in-place --recursive src", pty=True)
