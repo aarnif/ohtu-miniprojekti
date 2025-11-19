@@ -1,34 +1,20 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} Citations app {% endblock %} {%
+block body %}
 
-{% block title %}
-Todo app
-{% endblock %}
+<h2>Citations app</h2>
 
-{% block body %}
-
-<h2>Todo app</h2>
-
-<div>
-  things still unfinished: {{ unfinished }}
-</div>
-
+{% if citations|length == 0 %}
+<p>No citations.</p>
+{% else %}
 <ul>
-  {% for todo in todos %}
-    <li style="display: flex">
-      <div>
-        {{ todo }} 
-      </div>
-      {% if not todo.done %}
-        <form action="/toggle_todo/{{ todo.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit">mark as done</button>
-        </form>
-      {% endif %}
-    </li>
+  {% for citation in citations %}
+  <li>{{ citation }}</li>
   {% endfor %}
 </ul>
+{% endif %}
 
 <div>
-  <a href="/new_todo">Create new todo</a>
+  <a href="/new_citation">Create new citation</a>
 </div>
 
 {% endblock %}

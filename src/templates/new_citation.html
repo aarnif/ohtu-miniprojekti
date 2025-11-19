@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block title %} Add new citation {% endblock %} {%
+block body %}
+
+<h2>Add new citation</h2>
+
+<form action="/create_citation" method="post">
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li class="error-message">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} {% endwith %}
+  <h3>Citation:</h3>
+
+  <div class="form-items">
+    <label for="author">Author: <input type="text" name="author" /></label>
+    <label for="title">Title: <input type="text" name="title" /></label>
+    <label for="publisher"
+      >Publisher: <input type="text" name="publisher"
+    /></label>
+    <label for="year">Year: <input type="text" name="year" /></label>
+
+    <button type="submit">Add</button>
+    <a href="/">Go Back</a>
+  </div>
+</form>
+
+{% endblock %}

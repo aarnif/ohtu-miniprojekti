@@ -1,0 +1,11 @@
+*** Settings ***
+Resource  resource.robot
+Suite Setup      Open And Configure Browser
+Suite Teardown   Close Browser
+Test Setup       Reset Citations
+
+*** Test Cases ***
+At start there are no citations
+    Go To  ${HOME_URL}
+    Title Should Be  Citations app
+    Page Should Contain  No citations.
