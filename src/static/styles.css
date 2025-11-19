@@ -1,0 +1,16 @@
+form {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
