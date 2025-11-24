@@ -1,0 +1,18 @@
+[MASTER]
+
+ignore=tests
+
+[MESSAGES CONTROL]
+
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    missing-class-docstring,
+    too-few-public-methods,
+    unspecified-encoding,
+    too-many-arguments,
+    too-many-positional-arguments
+
+[FORMAT]
+
+max-line-length=120
