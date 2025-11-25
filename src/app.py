@@ -1,8 +1,9 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.citation_repository import get_citations, create_citation
 from config import app, test_env
 from util import validate_citation, UserInputError
+from bibtex_generator import create_bibtex
 
 
 @app.route("/")
@@ -32,6 +33,15 @@ def citation_creation():
     except UserInputError as error:
         flash(str(error))
         return redirect("/new_citation")
+
+
+@app.route("/download_bibtex_file")
+def download_bibtex_file():
+    bibtex_content = create_bibtex()
+    return Response(
+        bibtex_content,
+        headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
+    )
 
 
 # testausta varten oleva reitti
