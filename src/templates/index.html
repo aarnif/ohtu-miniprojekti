@@ -23,6 +23,13 @@ block body %}
       placeholder="Search by author, title or publisher..."
     />
   </div>
+  <select name="sort" id="sort">
+    <option value="">Sort By</option>
+    <option value="title" {% if sort == 'title' %}selected{% endif %}>Title</option>
+    <option value="author" {% if sort == 'author' %}selected{% endif %}>Author</option>
+    <option value="publisher" {% if sort == 'publisher' %}selected{% endif %}>Publisher</option>
+    <option value="year" {% if sort == 'year' %}selected{% endif %}>Year</option>
+  </select>
 </form>
 
 {% if citations|length == 0 %}
@@ -40,15 +47,20 @@ block body %}
 </div>
 
 <script>
-  const search = document.getElementById("query");
   const form = document.getElementById("search-form");
+  const search = document.getElementById("query");
+  const sort = document.getElementById("sort");
 
   search.focus();
   search.selectionStart = search.value.length;
 
-  search.addEventListener("input", () => {
-    form.submit();
-  });
+  search.addEventListener("input", () =>
+    form.submit()
+  );
+
+  sort.addEventListener("input", () =>
+    form.submit()
+  );
 </script>
 
 {% endblock %}

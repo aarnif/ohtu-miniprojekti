@@ -8,8 +8,9 @@ from util import validate_citation, UserInputError
 @app.route("/")
 def index():
     query = request.args.get("query", "")
-    citations = get_citations(query)
-    return render_template("index.html", citations=citations, query=query)
+    sort = request.args.get('sort', "")
+    citations = get_citations(query, sort)
+    return render_template("index.html", citations=citations, query=query, sort=sort)
 
 
 @app.route("/new_citation")
