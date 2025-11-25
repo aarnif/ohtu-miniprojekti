@@ -36,7 +36,6 @@ def citation_creation():
 @app.route("/download_bibtex_file")
 def download_bibtex_file():
     bibtex_content = create_bibtex()
-    
     return Response(
         bibtex_content,
         headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
