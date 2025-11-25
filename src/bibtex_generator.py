@@ -1,16 +1,11 @@
-from repositories.citation_repository import get_citations
-
-def create_bibtex():
-
-    citations = get_citations()
-
+def create_bibtex(citations):
     if not citations:
         return ""
 
     bibtex_content = ""
 
     for citation in citations:
-        #print(citation)
+        # print(citation)
         # Luodaan Bibtexin citekey (kirjoittajan sukunimi + vuosi)
         author_key = citation.author.split()[-1]
         year_key = citation.year

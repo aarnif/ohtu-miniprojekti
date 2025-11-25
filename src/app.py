@@ -8,8 +8,10 @@ from bibtex_generator import create_bibtex
 
 @app.route("/")
 def index():
-    citations = get_citations()
-    return render_template("index.html", citations=citations)
+    query = request.args.get("query", "")
+    sort = request.args.get('sort', "")
+    citations = get_citations(query, sort)
+    return render_template("index.html", citations=citations, query=query, sort=sort)
 
 
 @app.route("/new_citation")
@@ -35,7 +37,10 @@ def citation_creation():
 
 @app.route("/download_bibtex_file")
 def download_bibtex_file():
-    bibtex_content = create_bibtex()
+    query = request.args.get("query", "")
+    sort = request.args.get('sort', "")
+    citations = get_citations(query, sort)
+    bibtex_content = create_bibtex(citations)
     return Response(
         bibtex_content,
         headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
