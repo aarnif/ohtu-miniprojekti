@@ -6,14 +6,15 @@ from entities.citation import Citation
 
 def get_citations(query):
     if query:
-        result = db.session.execute(text("SELECT id, title, author, publisher, year FROM citations WHERE title ILIKE :query"),
+        result = db.session.execute(text("SELECT id, title, author, publisher, year FROM citations WHERE title, publisher ILIKE :query"),
                                     {"query": f"%{query}%"})
-    else:
+    if not query:
         result = db.session.execute(
             text("SELECT id, title, author, publisher, year FROM citations"))
 
     citations = result.fetchall()
     return [Citation(citation[0], citation[1], citation[2], citation[3], citation[4]) for citation in citations]
+
 
 def create_citation(title, author, publisher, year):
     sql = text(
