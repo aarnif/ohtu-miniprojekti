@@ -2,7 +2,8 @@ from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.citation_repository import get_citations, create_citation
 from config import app, test_env
-from util import validate_citation
+from util import validate_citation, UserInputError
+
 
 
 @app.route("/")
@@ -24,10 +25,10 @@ def citation_creation():
     year = request.form.get("year")
 
     try:
-        validate_citation(author, title, publisher, year)
-        create_citation(author, title, publisher, year)
+        validate_citation(title, author, publisher, year)
+        create_citation(title, author, publisher, year)
         return redirect("/")
-    except Exception as error:
+    except UserInputError as error:
         flash(str(error))
         return redirect("/new_citation")
 

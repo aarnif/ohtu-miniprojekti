@@ -1,6 +1,6 @@
 class Citation:
-    def __init__(self, id, title, author, publisher, year):
-        self.id = id
+    def __init__(self, citation_id, title, author, publisher, year):
+        self.citation_id = citation_id
         self.title = title
         self.author = author
         self.publisher = publisher
