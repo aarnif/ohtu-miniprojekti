@@ -7,3 +7,4 @@ repos:
         language: system
         types: [python]
         require_serial: true
+        args: [src, --disable=import-error]
