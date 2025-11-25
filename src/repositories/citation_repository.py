@@ -1,6 +1,5 @@
-from config import db
 from sqlalchemy import text
-
+from config import db
 from entities.citation import Citation
 
 
@@ -14,6 +13,7 @@ def get_citations(query):
 
     citations = result.fetchall()
     return [Citation(citation[0], citation[1], citation[2], citation[3], citation[4]) for citation in citations]
+
 
 def create_citation(title, author, publisher, year):
     sql = text(
