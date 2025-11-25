@@ -5,11 +5,11 @@ from config import app, test_env
 from util import validate_citation, UserInputError
 
 
-
 @app.route("/")
 def index():
-    citations = get_citations("")
-    return render_template("index.html", citations=citations)
+    query = request.args.get("query", "")
+    citations = get_citations(query)
+    return render_template("index.html", citations=citations, query=query)
 
 
 @app.route("/new_citation")
