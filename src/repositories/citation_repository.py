@@ -6,9 +6,9 @@ from entities.citation import Citation
 
 def get_citations(query):
     if query:
-        result = db.session.execute(text("SELECT id, title, author, publisher, year FROM citations WHERE title, publisher ILIKE :query"),
+        result = db.session.execute(text("SELECT id, title, author, publisher, year FROM citations WHERE title ILIKE :query OR publisher ILIKE :query OR author ILIKE :query"),
                                     {"query": f"%{query}%"})
-    if not query:
+    else:
         result = db.session.execute(
             text("SELECT id, title, author, publisher, year FROM citations"))
 
