@@ -3,9 +3,20 @@ from config import db
 from entities.citation import Citation
 
 
-def get_citations():
-    result = db.session.execute(
-        text("SELECT id, title, author, publisher, year FROM citations"))
+def get_citations(query, sort):
+    if not sort:
+        sort = "title"
+
+    if query:
+        result = db.session.execute(text(
+            "SELECT id, title, author, publisher, year FROM citations "
+            f"WHERE title ILIKE :query OR publisher ILIKE :query OR author ILIKE :query ORDER BY {sort}"),
+            {"query": f"%{query}%"})
+
+    else:
+        result = db.session.execute(
+            text(f"SELECT id, title, author, publisher, year FROM citations ORDER BY {sort}"))
+
     citations = result.fetchall()
     return [Citation(citation[0], citation[1], citation[2], citation[3], citation[4]) for citation in citations]
 
