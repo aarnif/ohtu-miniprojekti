@@ -8,7 +8,11 @@ Sovelluksessa pystyy lisätä viittauksia ja nähdä ne tiivistettynä etusivull
 
 
 ## Definition of done
-Sovellus toimii, testit menevät läpi ja koodi on siistiä.
+Koodi toimii: Sovellus ja uusi ominaisuus toimii kaikkien user storyn hyväksymiskriteerien mukaisesti.
+
+Koodin testaus: Koodi on testattu vähintään manuaalisesti.
+
+Koodin siisteys: Pylint menee läpi ilman virheitä ja koodi on muotoiltu autopep8:lla. Lisäksi koodi on toisen tiimiläisen läpikäymää.
 
 ## Sovelluksen linkki
 
