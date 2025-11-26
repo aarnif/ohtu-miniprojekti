@@ -24,3 +24,8 @@ def test_e2e(ctx):
 @task
 def format_code(ctx):
     ctx.run("autopep8 --in-place --recursive src", pty=True)
+
+
+@task
+def lint(ctx):
+    ctx.run("pylint src", pty=True)
