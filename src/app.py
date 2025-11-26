@@ -11,7 +11,10 @@ def index():
     query = request.args.get("query", "")
     sort = request.args.get('sort', "")
     citations = get_citations(query, sort)
+    for citation in citations:
+        print(citation.citation_id)
     return render_template("index.html", citations=citations, query=query, sort=sort)
+
 
 
 @app.route("/new_citation")
@@ -46,8 +49,8 @@ def download_bibtex_file():
         headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
     )
 
-@app.route("/delete_citation/<citation_id>", methods=["POST"])
-def delete_citation_route(citation_id):
+@app.route("/delete/<citation_id>", methods=["POST"])
+def delete(citation_id):
     delete_citation(citation_id)
     return redirect("/")
 
