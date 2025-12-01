@@ -1,11 +1,103 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.wrapper {
+  flex-grow: 1;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a {
+  all: unset;
+  display: flex;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 form {
-  max-width: 300px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
+a button {
+  width: 100%;
+}
+
+input,
+select {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input:hover,
+select:hover {
+  border-color: #007bff;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 2px 0px oklch(37.9% 0.146 265.522);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+button.primary {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #007bff;
+}
+
+button.primary:focus,
+button.primary:hover {
+  background-color: #0066d6;
+  border: 2px solid #0066d6;
+}
+
+button.secondary {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+button.secondary:focus,
+button.secondary:hover {
+  background-color: #f0f0f0;
+  border-color: #0066d6;
+  color: #0066d6;
+}
+
 #search-form {
-  max-width: 500px;
   flex-direction: row;
   gap: 8px;
 }
@@ -20,12 +112,12 @@ form {
   width: 100%;
   position: relative;
   display: flex;
-  align-items: center;
 }
 
 .search-icon {
   position: absolute;
   width: 16px;
+  top: 10px;
   left: 4px;
 }
 
@@ -40,4 +132,67 @@ form {
 label {
   display: flex;
   flex-direction: column;
+}
+
+.error-message {
+  padding: 12px;
+  color: #c41e3a;
+  background-color: #ffe6e6;
+  border: 1px solid #c41e3a;
+  border-radius: 8px;
+}
+
+.success-message {
+  padding: 12px;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #155724;
+  border-radius: 8px;
+}
+
+.citation-items {
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.citation-item {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  transition: 0.2s ease-in-out;
+  border-radius: 8px;
+}
+
+.citation-item:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.citation-item:nth-child(even):hover {
+  background-color: #d9d9d9;
+}
+
+.citation-item:nth-child(odd):hover {
+  background-color: #f0f0f0;
+}
+
+.citation-header {
+  margin: 0px;
+}
+
+.citation-author {
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.citation-item-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.citation-publisher,
+.citation-year {
+  margin-bottom: 0;
 }

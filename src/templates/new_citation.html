@@ -1,16 +1,7 @@
 {% extends "layout.html" %} {% block title %} Add new citation {% endblock %} {%
-block body %}
-
-<h2>Add new citation</h2>
+block page_title %} Add new citation {% endblock %} {% block body %}
 
 <form action="/create_citation" method="post">
-  {% with messages = get_flashed_messages() %} {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li class="error-message">{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} {% endwith %}
   <h3>Citation:</h3>
 
   <div class="form-items">
@@ -21,8 +12,9 @@ block body %}
     /></label>
     <label for="year">Year: <input type="text" name="year" /></label>
 
-    <button id="add_citation_button" type="submit">Add</button>
-    <a href="/">Go Back</a>
+    <button id="add_citation_button" class="primary" type="submit">Add</button>
+
+    <a href="/"><button class="secondary" type="button">Cancel</button></a>
   </div>
 </form>
 

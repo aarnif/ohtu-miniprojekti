@@ -13,6 +13,29 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    {% block body %}{% endblock %}
+    <div class="wrapper">
+      <h2>{% block page_title %}{% endblock %}</h2>
+      {% with messages = get_flashed_messages(with_categories=True) %} {% if
+      messages %}
+      <div id="flash-messages">
+        {% for category, message in messages %}
+        <p
+          class="{% if category == 'success' %}success-message{% else %}error-message{% endif %}"
+        >
+          {{ message }}
+        </p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block body %}{% endblock %}
+    </div>
   </body>
+  <script>
+    const flashMessages = document.getElementById("flash-messages");
+
+    if (flashMessages) {
+      setTimeout(() => {
+        flashMessages.remove();
+      }, 3000);
+    }
+  </script>
 </html>
