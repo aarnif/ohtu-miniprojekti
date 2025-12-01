@@ -27,3 +27,9 @@ def create_citation(title, author, publisher, year):
     db.session.execute(
         sql, {"title": title, "author": author, "publisher": publisher, "year": year})
     db.session.commit()
+
+
+def delete_citation(citation_id):
+    sql = text("DELETE FROM citations WHERE id = :citation_id")
+    db.session.execute(sql, {"citation_id": citation_id})
+    db.session.commit()

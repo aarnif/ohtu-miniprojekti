@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.citation_repository import get_citations, create_citation
+from repositories.citation_repository import get_citations, create_citation, delete_citation
 from config import app, test_env
 from util import validate_citation, UserInputError
 from bibtex_generator import create_bibtex
@@ -12,6 +12,7 @@ def index():
     sort = request.args.get('sort', "")
     citations = get_citations(query, sort)
     return render_template("index.html", citations=citations, query=query, sort=sort)
+
 
 
 @app.route("/new_citation")
@@ -45,6 +46,12 @@ def download_bibtex_file():
         bibtex_content,
         headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
     )
+
+
+@app.route("/citations/<citation_id>/delete", methods=["POST"])
+def delete(citation_id):
+    delete_citation(citation_id)
+    return redirect("/")
 
 
 # testausta varten oleva reitti
