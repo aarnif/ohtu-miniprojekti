@@ -1,6 +1,7 @@
 import os
 from sqlalchemy import text
 from config import db, app
+from data import CITATIONS
 
 
 def reset_db():
@@ -8,6 +9,19 @@ def reset_db():
     sql = text("DELETE FROM citations")
     db.session.execute(sql)
     db.session.commit()
+
+
+def populate_db():
+    print("Populating database with sample citations")
+
+    sql = text(
+        "INSERT INTO citations (author, title, publisher, year, citation_type, doi) "
+        "VALUES (:author, :title, :publisher, :year, :citation_type, :doi)"
+    )
+    db.session.execute(sql, CITATIONS)
+
+    db.session.commit()
+    print(f"Added {len(CITATIONS)} citations to the database")
 
 
 def tables():
@@ -72,3 +86,4 @@ def setup_db():
 if __name__ == "__main__":
     with app.app_context():
         setup_db()
+        populate_db()
