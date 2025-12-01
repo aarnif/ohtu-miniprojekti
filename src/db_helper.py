@@ -1,6 +1,7 @@
 import os
 from sqlalchemy import text
 from config import db, app
+from data import CITATIONS
 
 
 def reset_db():
@@ -10,6 +11,19 @@ def reset_db():
     db.session.commit()
 
 
+def populate_db():
+    print("Populating database with sample citations")
+
+    sql = text(
+        "INSERT INTO citations (author, title, publisher, year, citation_type, doi) "
+        "VALUES (:author, :title, :publisher, :year, :citation_type, :doi)"
+    )
+    db.session.execute(sql, CITATIONS)
+
+    db.session.commit()
+    print(f"Added {len(CITATIONS)} citations to the database")
+
+
 def tables():
     """Returns all table names from the database except those ending with _id_seq"""
     sql = text(
@@ -17,6 +31,19 @@ def tables():
         "FROM information_schema.tables "
         "WHERE table_schema = 'public' "
         "AND table_name NOT LIKE '%_id_seq'"
+    )
+
+    result = db.session.execute(sql)
+    return [row[0] for row in result.fetchall()]
+
+
+def enums():
+    """Returns all enum type names from the database"""
+    sql = text(
+        "SELECT typname "
+        "FROM pg_type "
+        "WHERE typtype = 'e' "
+        "AND typnamespace = (SELECT oid FROM pg_namespace WHERE nspname = 'public')"
     )
 
     result = db.session.execute(sql)
@@ -36,6 +63,14 @@ def setup_db():
             db.session.execute(sql)
         db.session.commit()
 
+    enums_in_db = enums()
+    if len(enums_in_db) > 0:
+        print(f"Enums exist, dropping: {', '.join(enums_in_db)}")
+        for enum in enums_in_db:
+            sql = text(f"DROP TYPE {enum}")
+            db.session.execute(sql)
+        db.session.commit()
+
     print("Creating database")
 
     # Read schema from schema.sql file
@@ -51,3 +86,4 @@ def setup_db():
 if __name__ == "__main__":
     with app.app_context():
         setup_db()
+        populate_db()
