@@ -11,17 +11,19 @@ def create_bibtex(citations):
         year_key = citation.year
         citekey = f"{author_key}{year_key}"
 
-        # Formatoidaan bibtex entry
-        # Huom !! Olettaa suoraan että kyseessä on kirja (@Book)
-        # -> myöhemmin kun lisätään muita tyyppejä, tämä pitää vaihtaa muuttujaksi
-        bibtex_citation = f"""@Book{{{citekey},
+        # Formatoidaan bibtex entry käyttäen citation_type kenttää
+        bibtex_type = citation.citation_type.capitalize()
+        bibtex_citation = f"""@{bibtex_type}{{{citekey},
         author = {{{citation.author}}},
         title = {{{citation.title}}},
         publisher = {{{citation.publisher}}},
-        year = {{{citation.year}}}
-}}
+        year = {{{citation.year}}}"""
 
-"""
+        if citation.doi:
+            bibtex_citation += f""",
+        doi = {{{citation.doi}}}"""
+
+        bibtex_citation += "\n}\n\n"
         bibtex_content += bibtex_citation
 
     return bibtex_content
