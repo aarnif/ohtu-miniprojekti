@@ -14,7 +14,6 @@ def index():
     return render_template("index.html", citations=citations, query=query, sort=sort)
 
 
-
 @app.route("/new_citation")
 def new_citation():
     return render_template("new_citation.html")
@@ -22,14 +21,16 @@ def new_citation():
 
 @app.route("/create_citation", methods=["POST"])
 def citation_creation():
+    citation_type = request.form.get("citation_type")
     author = request.form.get("author")
     title = request.form.get("title")
     publisher = request.form.get("publisher")
     year = request.form.get("year")
+    doi = request.form.get("doi")
 
     try:
-        validate_citation(title, author, publisher, year)
-        create_citation(title, author, publisher, year)
+        validate_citation(title, author, publisher, year, citation_type)
+        create_citation(title, author, publisher, year, citation_type, doi)
         return redirect("/")
     except UserInputError as error:
         flash(str(error))
