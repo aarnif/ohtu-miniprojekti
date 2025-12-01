@@ -8,10 +8,21 @@ def get_citations(query, sort):
         sort = "title"
 
     if query:
+        search_term = query
+
+        if search_term.startswith("https://doi.org/"):
+            search_term = search_term.replace("https://doi.org/", "")
+        elif search_term.startswith("http://doi.org/"):
+            search_term = search_term.replace("http://doi.org/", "")
+
         result = db.session.execute(text(
             "SELECT id, title, author, publisher, year, citation_type, doi FROM citations "
-            f"WHERE title ILIKE :query OR publisher ILIKE :query OR author ILIKE :query ORDER BY {sort}"),
-            {"query": f"%{query}%"})
+            f"WHERE title ILIKE :query \
+            OR publisher ILIKE :query \
+            OR author ILIKE :query \
+            OR doi ILIKE :query \
+            ORDER BY {sort}"),
+            {"query": f"%{search_term}%"})
 
     else:
         result = db.session.execute(
@@ -44,7 +55,7 @@ def delete_citation(citation_id):
 
 def edit_citation(citation_id, title, author, publisher, year, citation_type, doi):
     sql = text(
-        "UPDATE citations SET title = :title, author = :author, " \
+        "UPDATE citations SET title = :title, author = :author, "
         "publisher = :publisher, year = :year, citation_type = :citation_type, doi = :doi WHERE id = :citation_id")
     db.session.execute(
         sql, {"title": title, "author": author, "publisher": publisher, "year": year,
@@ -53,7 +64,8 @@ def edit_citation(citation_id, title, author, publisher, year, citation_type, do
 
 
 def get_citation_by_id(citation_id):
-    sql = text("SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE id = :citation_id")
+    sql = text(
+        "SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE id = :citation_id")
     result = db.session.execute(sql, {"citation_id": citation_id})
     citation = result.fetchone()
     if citation:
