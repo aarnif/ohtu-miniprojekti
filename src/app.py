@@ -11,8 +11,6 @@ def index():
     query = request.args.get("query", "")
     sort = request.args.get('sort', "")
     citations = get_citations(query, sort)
-    for citation in citations:
-        print(citation.citation_id)
     return render_template("index.html", citations=citations, query=query, sort=sort)
 
 
