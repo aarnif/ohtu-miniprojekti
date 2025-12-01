@@ -38,7 +38,7 @@ Second citation can be added
 Citation can be downloaded
     Go To  ${HOME_URL}
     Click Button  Download BibTeX File
-    IF  ${HOME_PATH} == '/home/runner'
+    IF  $HOME_PATH == '/home/runner'
         ${file_path}=  Set Variable  /home/runner/ohtu-miniprojekti/ohtu-miniprojekti/exported_citations.bib
     ELSE
         ${file_path}=  Set Variable  ${HOME_PATH}/Downloads/exported_citations.bib
