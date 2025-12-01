@@ -39,11 +39,11 @@ Citation can be downloaded
     Go To  ${HOME_URL}
     Click Button  Download BibTeX File
     IF  $HOME_PATH == '/home/runner'
-        ${file_path}=  Set Variable  /home/runner/ohtu-miniprojekti/ohtu-miniprojekti/exported_citations.bib
+        ${FILE_PATH}=  Set Variable  /home/runner/ohtu-miniprojekti/ohtu-miniprojekti/exported_citations.bib
     ELSE
-        ${file_path}=  Set Variable  ${HOME_PATH}/Downloads/exported_citations.bib
+        ${FILE_PATH}=  Set Variable  ${HOME_PATH}/Downloads/exported_citations.bib
     END
-    File Should Exist  ${file_path}
-    ${downloaded_text}=  Get File  ${file_path}
+    File Should Exist  ${FILE_PATH}
+    ${downloaded_text}=  Get File  ${FILE_PATH}
     Should Contain  ${downloaded_text}  John Doe  Aku Ankka
     Should Contain  ${downloaded_text}  Mary Jane  Minni Hiiri
