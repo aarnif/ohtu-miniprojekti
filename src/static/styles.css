@@ -31,6 +31,10 @@ form {
   flex-direction: column;
 }
 
+a button {
+  width: 100%;
+}
+
 input,
 select {
   padding-top: 8px;
