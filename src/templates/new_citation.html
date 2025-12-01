@@ -2,13 +2,6 @@
 block page_title %} Add new citation {% endblock %} {% block body %}
 
 <form action="/create_citation" method="post">
-  {% with messages = get_flashed_messages() %} {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li class="error-message">{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} {% endwith %}
   <h3>Citation:</h3>
 
   <div class="form-items">
