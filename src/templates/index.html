@@ -31,9 +31,9 @@ block body %}
     </select>
   </form>
 
- <a href="/new_citation"><button>Create new citation</button></a>
+ <a href="/new_citation"><button class="primary">Create new citation</button></a>
 
-  <button onclick="location.href='/download_bibtex_file?query={{ query }}&sort={{ sort }}'">Download BibTeX File</button>
+  <button class="primary" onclick="location.href='/download_bibtex_file?query={{ query }}&sort={{ sort }}'">Download BibTeX File</button>
 </nav>
 
 {% if citations|length == 0 %}
