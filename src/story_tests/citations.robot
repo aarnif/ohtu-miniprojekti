@@ -1,11 +1,11 @@
-*** Settings ***
+*** Settings *** 
 Resource  resource.robot
 Suite Setup      Open And Configure Browser
 Suite Teardown   Close Browser
 Test Setup       Reset Citations
 Library   OperatingSystem
 
-*** Keywords ***
+*** Keywords *** 
 Add Citation
     [Arguments]  ${author}  ${title}  ${publisher}  ${year}
     Go To  ${HOME_URL}
@@ -30,8 +30,20 @@ First citation can be added
 Second citation can be added
     Add Citation  John Doe   Aku Ankka   Otava   2000
     Add Citation  Mary Jane  Minni Hiiri  Tammi   2003
-
     Page Should Contain  John Doe  Aku Ankka
     Page Should Contain  Otava  2000
     Page Should Contain  Mary Jane  Minni Hiiri
     Page Should Contain  Tammi  2003
+
+Citation can be downloaded
+    Go To  ${HOME_URL}
+    Click Button  Download BibTeX File
+    IF  ${HOME_PATH} == '/home/runner'
+        ${file_path}=  Set Variable  /home/runner/ohtu-miniprojekti/ohtu-miniprojekti/exported_citations.bib
+    ELSE
+        ${file_path}=  Set Variable  ${HOME_PATH}/Downloads/exported_citations.bib
+    END
+    File Should Exist  ${file_path}
+    ${downloaded_text}=  Get File  ${file_path}
+    Should Contain  ${downloaded_text}  John Doe  Aku Ankka
+    Should Contain  ${downloaded_text}  Mary Jane  Minni Hiiri

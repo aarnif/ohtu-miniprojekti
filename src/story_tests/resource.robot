@@ -1,15 +1,16 @@
 *** Settings ***
 Library  SeleniumLibrary
 
-*** Variables ***
+*** Variables *** 
 ${SERVER}     localhost:5001
 ${DELAY}      0.5 seconds
-${HOME_URL}   http://${SERVER}
-${RESET_URL}  http://${SERVER}/reset_db
+${HOME_URL}   http://${server}/
+${RESET_URL}  http://${server}/reset_db
 ${BROWSER}    chrome
 ${HEADLESS}   false
+${HOME_PATH}            %{HOME}
 
-*** Keywords ***
+*** Keywords *** 
 Open And Configure Browser
     IF  $BROWSER == 'chrome'
         ${options}  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys
@@ -25,7 +26,6 @@ Open And Configure Browser
         Set Selenium Speed  ${DELAY}
     END
     Open Browser  browser=${BROWSER}  options=${options}
-    
+
 Reset Citations
     Go To  ${RESET_URL}
-
