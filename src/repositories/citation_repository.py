@@ -9,13 +9,13 @@ def get_citations(query, sort):
 
     if query:
         result = db.session.execute(text(
-            "SELECT id, title, author, publisher, year FROM citations "
+            "SELECT id, title, author, publisher, year, citation_type, doi FROM citations "
             f"WHERE title ILIKE :query OR publisher ILIKE :query OR author ILIKE :query ORDER BY {sort}"),
             {"query": f"%{query}%"})
 
     else:
         result = db.session.execute(
-            text(f"SELECT id, title, author, publisher, year FROM citations ORDER BY {sort}"))
+            text(f"SELECT id, title, author, publisher, year, citation_type, doi FROM citations ORDER BY {sort}"))
 
     citations = result.fetchall()
     return [Citation(citation[0], citation[1], citation[2], citation[3], citation[4]) for citation in citations]
@@ -35,10 +35,20 @@ def delete_citation(citation_id):
     db.session.commit()
 
 
-def edit_citation(citation_id, title, author, publisher, year):
+def edit_citation(citation_id, title, author, publisher, year, citation_type, doi):
     sql = text(
         "UPDATE citations SET title = :title, author = :author, " \
-        "publisher = :publisher, year = :year WHERE id = :citation_id")
+        "publisher = :publisher, year = :year, citation_type = :citation_type, doi = :doi WHERE id = :citation_id")
     db.session.execute(
-        sql, {"title": title, "author": author, "publisher": publisher, "year": year, "citation_id": citation_id})
+        sql, {"title": title, "author": author, "publisher": publisher, "year": year,
+              "citation_id": citation_id, "citation_type": citation_type, "doi": doi})
     db.session.commit()
+
+
+def get_citation_by_id(citation_id):
+    sql = text("SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE id = :citation_id")
+    result = db.session.execute(sql, {"citation_id": citation_id})
+    citation = result.fetchone()
+    if citation:
+        return Citation(citation[0], citation[1], citation[2], citation[3], citation[4])
+    return None
