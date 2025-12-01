@@ -1,7 +1,5 @@
 {% extends "layout.html" %} {% block title %} Add new citation {% endblock %} {%
-block body %}
-
-<h2>Add new citation</h2>
+block page_title %} Add new citation {% endblock %} {% block body %}
 
 <form action="/create_citation" method="post">
   {% with messages = get_flashed_messages() %} {% if messages %}

@@ -13,6 +13,9 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    <div class="wrapper">{% block body %}{% endblock %}</div>
+    <div class="wrapper">
+      <h2>{% block page_title %}{% endblock %}</h2>
+      {% block body %}{% endblock %}
+    </div>
   </body>
 </html>
