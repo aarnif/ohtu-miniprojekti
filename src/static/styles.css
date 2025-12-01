@@ -1,11 +1,25 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  flex-grow: 1;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 form {
-  max-width: 300px;
   display: flex;
   flex-direction: column;
 }
 
 #search-form {
-  max-width: 500px;
   flex-direction: row;
   gap: 8px;
 }
