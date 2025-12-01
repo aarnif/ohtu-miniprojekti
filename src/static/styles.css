@@ -83,3 +83,50 @@ label {
   border: 1px solid #155724;
   border-radius: 8px;
 }
+
+.citation-items {
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.citation-item {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  transition: 0.2s ease-in-out;
+  border-radius: 8px;
+}
+
+.citation-item:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.citation-item:nth-child(even):hover {
+  background-color: #d9d9d9;
+}
+
+.citation-item:nth-child(odd):hover {
+  background-color: #f0f0f0;
+}
+
+.citation-header {
+  margin: 0px;
+}
+
+.citation-author {
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.citation-item-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.citation-publisher,
+.citation-year {
+  margin-bottom: 0;
+}

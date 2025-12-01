@@ -39,9 +39,18 @@ block body %}
 {% if citations|length == 0 %}
 <p>No citations.</p>
 {% else %}
-<ul>
+<ul class="citation-items">
   {% for citation in citations %}
-  <li>{{ citation }}</li>
+  <li class="citation-item">
+      <div>
+        <h3 class="citation-header">{{ citation.title }}</h3>
+        <p class="citation-author">By {{ citation.author }}</p>
+      </div>
+      <div class="citation-item-bottom">
+         <p class="citation-publisher">Published By {{ citation.publisher }}</p>
+         <p class="citation-year">{{ citation.year }}</p>
+      </div>
+    </li>
   {% endfor %}
 </ul>
 {% endif %}
