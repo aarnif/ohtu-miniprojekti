@@ -49,7 +49,8 @@ def download_bibtex_file():
         headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
     )
 
-@app.route("/delete/<citation_id>", methods=["POST"])
+
+@app.route("/citations/<citation_id>/delete", methods=["POST"])
 def delete(citation_id):
     delete_citation(citation_id)
     return redirect("/")
