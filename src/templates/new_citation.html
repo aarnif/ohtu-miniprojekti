@@ -35,13 +35,17 @@ block page_title %} Add new citation {% endblock %} {% block body %}
       <option value="techreport" {% if citation_type == "techreport" %}selected{% endif %}>Tech Report</option>
       <option value="unpublished" {% if citation_type == "unpublished" %}selected{% endif %}>Unpublished</option>
     </select>
-    <label for="author">Author: <input type="text" name="author" value="{{ author or '' }}" /></label>
-    <label for="title">Title: <input type="text" name="title" value="{{ title or '' }}" /></label>
-    <label for="publisher"
-      >Publisher: <input type="text" name="publisher" value="{{ publisher or '' }}"
+    <label for="author"
+      >Author: <input id="author" type="text" name="author"
     /></label>
-    <label for="year">Year: <input type="text" name="year" value="{{ year or '' }}" /></label>
-    <label for="doi"> DOI: <input id="doi" type="text" name="doi" value="{{ doi or '' }}" /> </label>
+    <label for="title"
+      >Title: <input id="title" type="text" name="title"
+    /></label>
+    <label for="publisher"
+      >Publisher: <input id="publisher" type="text" name="publisher"
+    /></label>
+    <label for="year">Year: <input id="year" type="text" name="year" /></label>
+    <label for="doi"> DOI: <input id="doi" type="text" name="doi" /> </label>
 
     <div class="form-buttons">
       <button id="add_citation_button" class="primary" type="submit">
@@ -53,5 +57,58 @@ block page_title %} Add new citation {% endblock %} {% block body %}
     </div>
   </div>
 </form>
+
+<script>
+  const doiFetchInput = document.getElementById("doi-fetch");
+  const doiMessage = document.getElementById("doi-message");
+
+  const displayMessage = (message, type) => {
+    doiMessage.textContent = message;
+    doiMessage.className = `${type}-message`;
+    if (type === "error") {
+      setTimeout(() => {
+        doiMessage.textContent = "";
+        doiMessage.className = "";
+      }, 3000);
+    }
+  };
+
+  const fetchDoiData = async (doi) => {
+    if (!doi) {
+      return;
+    }
+
+    try {
+      displayMessage("Fetching doi info...", "pending");
+      const response = await fetch(`https://api.crossref.org/works/${doi}`);
+
+      if (response.status === 404) {
+        displayMessage("DOI not found!", "error");
+        return;
+      }
+
+      const data = await response.json();
+      const { type, author, title, publisher, created, DOI } = data.message;
+
+      document.getElementById("citation_type").value = type;
+      document.getElementById("author").value =
+        author?.map((a) => a.given + " " + a.family).join(", ") || "";
+      document.getElementById("title").value = title?.[0] || "";
+      document.getElementById("publisher").value = publisher || "";
+      document.getElementById("year").value =
+        created?.["date-parts"]?.[0]?.[0] || "";
+      document.getElementById("doi").value = DOI || "";
+
+      displayMessage("✓ Citation loaded from DOI!", "success");
+    } catch (error) {
+      displayMessage("Error fetching DOI. Please try again.", "error");
+    }
+  };
+
+  doiFetchInput.addEventListener("blur", async (event) => {
+    let doi = event.target.value.trim();
+    await fetchDoiData(doi);
+  });
+</script>
 
 {% endblock %}
