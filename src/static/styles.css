@@ -32,6 +32,22 @@ form {
   flex-direction: column;
 }
 
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+}
+
+label span {
+  font-style: normal;
+  font-size: 14px;
+}
+
+label:has(input:focus) {
+  font-weight: bold;
+}
+
 a button {
   width: 100%;
 }
@@ -95,6 +111,16 @@ button.secondary:hover {
   background-color: #f0f0f0;
   border-color: #0066d6;
   color: #0066d6;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.form-buttons > button,
+.form-buttons > a {
+  flex-grow: 1;
 }
 
 #search-form {

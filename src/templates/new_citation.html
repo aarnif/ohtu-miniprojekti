@@ -30,9 +30,14 @@ block page_title %} Add new citation {% endblock %} {% block body %}
     <label for="year">Year: <input type="text" name="year" /></label>
     <label for="doi"> DOI: <input id="doi" type="text" name="doi" /> </label>
 
-    <button id="add_citation_button" class="primary" type="submit">Add</button>
-
-    <a href="/"><button class="secondary" type="button">Cancel</button></a>
+    <div class="form-buttons">
+      <button id="add_citation_button" class="primary" type="submit">
+        Add
+      </button>
+      <a href="/">
+        <button type="button" class="secondary">Cancel</button>
+      </a>
+    </div>
   </div>
 </form>
 
