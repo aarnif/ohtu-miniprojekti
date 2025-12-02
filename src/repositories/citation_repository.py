@@ -12,19 +12,17 @@ def get_citations(query, sort):
     params = {}
 
     if query:
-        search_term = query
-
-        if search_term.startswith("https://doi.org/"):
-            search_term = search_term.replace("https://doi.org/", "")
-        elif search_term.startswith("http://doi.org/"):
-            search_term = search_term.replace("http://doi.org/", "")
+        if query.startswith("https://doi.org/"):
+            query = query.replace("https://doi.org/", "")
+        elif query.startswith("http://doi.org/"):
+            query = query.replace("http://doi.org/", "")
 
         sql_query += "WHERE (title ILIKE :q OR author ILIKE :q OR publisher ILIKE :q OR doi ILIKE :q"
-        params["q"] = f"%{search_term}%"
+        params["q"] = f"%{query}%"
 
-        if search_term.isdigit():
-            year_start = int(search_term + "0" * (4 - len(search_term)))
-            year_end = int(search_term + "9" * (4 - len(search_term)))
+        if query.isdigit():
+            year_start = int(query + "0" * (4 - len(query)))
+            year_end = int(query + "9" * (4 - len(query)))
             current_year = datetime.now().year
             year_end = min(year_end, current_year)
             sql_query += " OR year BETWEEN :year_start AND :year_end)"
