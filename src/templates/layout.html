@@ -14,7 +14,10 @@
   </head>
   <body>
     <div class="wrapper">
-      <h2>{% block page_title %}{% endblock %}</h2>
+      <div class="page-header-container">
+        <h2>{% block page_title %}{% endblock %}</h2>
+        {% block back_button %}{% endblock %}
+      </div>
       {% with messages = get_flashed_messages(with_categories=True) %} {% if
       messages %}
       <div id="flash-messages">
