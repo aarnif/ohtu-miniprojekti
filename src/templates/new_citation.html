@@ -73,6 +73,27 @@ block page_title %} Add new citation {% endblock %} {% block body %}
     }
   };
 
+  const mapCitationType = (apiType) => {
+    if (!apiType) return "";
+    const lowerType = apiType.toLowerCase();
+
+    if (lowerType.includes("proceedings")) return "proceedings";
+    if (lowerType.includes("thesis") || lowerType.includes("dissertation"))
+      return "phdthesis";
+    if (lowerType.includes("report")) return "techreport";
+    if (lowerType.includes("manual")) return "manual";
+    if (lowerType.includes("book")) return "book";
+    if (lowerType.includes("booklet")) return "booklet";
+    if (lowerType.includes("conference")) return "conference";
+    if (lowerType.includes("inbook")) return "inbook";
+    if (lowerType.includes("incollection")) return "incollection";
+    if (lowerType.includes("inproceedings")) return "inproceedings";
+    if (lowerType.includes("unpublished")) return "unpublished";
+    if (lowerType.includes("article")) return "article";
+
+    return "misc";
+  };
+
   const fetchDoiData = async (doi) => {
     if (!doi) {
       return;
@@ -90,7 +111,7 @@ block page_title %} Add new citation {% endblock %} {% block body %}
       const data = await response.json();
       const { type, author, title, publisher, created, DOI } = data.message;
 
-      document.getElementById("citation_type").value = type;
+      document.getElementById("citation_type").value = mapCitationType(type);
       document.getElementById("author").value =
         author?.map((a) => a.given + " " + a.family).join(", ") || "";
       document.getElementById("title").value = title?.[0] || "";
