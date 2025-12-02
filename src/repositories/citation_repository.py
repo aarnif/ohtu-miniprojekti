@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import text
 from config import db
 from entities.citation import Citation
@@ -7,17 +8,34 @@ def get_citations(query, sort):
     if not sort:
         sort = "title"
 
+    sql_query = "SELECT id, author, title, publisher, year, citation_type, doi FROM citations "
+    params = {}
+
     if query:
-        result = db.session.execute(text(
-            "SELECT id, title, author, publisher, year, citation_type, doi FROM citations "
-            f"WHERE title ILIKE :query OR publisher ILIKE :query OR author ILIKE :query ORDER BY {sort}"),
-            {"query": f"%{query}%"})
+        if query.startswith("https://doi.org/"):
+            query = query.replace("https://doi.org/", "")
+        elif query.startswith("http://doi.org/"):
+            query = query.replace("http://doi.org/", "")
 
-    else:
-        result = db.session.execute(
-            text(f"SELECT id, title, author, publisher, year, citation_type, doi FROM citations ORDER BY {sort}"))
+        sql_query += "WHERE (title ILIKE :q OR author ILIKE :q OR publisher ILIKE :q OR doi ILIKE :q"
+        params["q"] = f"%{query}%"
 
+        if query.isdigit():
+            year_start = int(query + "0" * (4 - len(query)))
+            year_end = int(query + "9" * (4 - len(query)))
+            current_year = datetime.now().year
+            year_end = min(year_end, current_year)
+            sql_query += " OR year BETWEEN :year_start AND :year_end)"
+            params["year_start"] = year_start
+            params["year_end"] = year_end
+        else:
+            sql_query += ")"
+
+    sql_query += f" ORDER BY {sort}"
+
+    result = db.session.execute(text(sql_query), params)
     citations = result.fetchall()
+
     return [Citation(citation[0], citation[1], citation[2], citation[3],
                      citation[4], citation[5], citation[6]) for citation in citations]
 
@@ -44,7 +62,7 @@ def delete_citation(citation_id):
 
 def edit_citation(citation_id, title, author, publisher, year, citation_type, doi):
     sql = text(
-        "UPDATE citations SET title = :title, author = :author, " \
+        "UPDATE citations SET title = :title, author = :author, "
         "publisher = :publisher, year = :year, citation_type = :citation_type, doi = :doi WHERE id = :citation_id")
     db.session.execute(
         sql, {"title": title, "author": author, "publisher": publisher, "year": year,
@@ -53,7 +71,8 @@ def edit_citation(citation_id, title, author, publisher, year, citation_type, do
 
 
 def get_citation_by_id(citation_id):
-    sql = text("SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE id = :citation_id")
+    sql = text(
+        "SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE id = :citation_id")
     result = db.session.execute(sql, {"citation_id": citation_id})
     citation = result.fetchone()
     if citation:
