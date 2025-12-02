@@ -61,4 +61,33 @@ page_title %} Citation {% endblock %} {% block back_button %}
   <p class="citation-year">{{ citation.year }}</p>
 </div>
 
+<dialog>
+  <form action="/citations/{{ citation.citation_id }}/delete" method="post">
+    <p>Delete Citation?</p>
+    <div>
+      <button id="cancel" type="button" class="secondary">Cancel</button>
+      <button id="confirm" type="submit" class="primary">Delete</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  const form = document.querySelector("form");
+  const deleteButton = document.getElementById("delete");
+  const cancelButton = document.getElementById("cancel");
+  const dialog = document.querySelector("dialog");
+
+  deleteButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  form.addEventListener("submit", () => {
+    dialog.close();
+  });
+</script>
+
 {% endblock %}

@@ -67,6 +67,7 @@ def citation_view(citation_id):
 @app.route("/citations/<citation_id>/delete", methods=["POST"])
 def delete(citation_id):
     delete_citation(citation_id)
+    flash("Citation deleted successfully!", "success")
     return redirect("/")
 
 
