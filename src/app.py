@@ -72,23 +72,15 @@ def delete(citation_id):
     return redirect("/")
 
 
-@app.route("/citations/<citation_id>/edit")
-def edit_citation_form(citation_id):
-    citation = get_citation_by_id(citation_id)
-
-    if not citation:
-        flash("Citation not found", "error")
-        return redirect("/")
-
-    return render_template("edit_citation.html", citation=citation)
-
-
-@app.route("/citations/<citation_id>/update", methods=["POST"])
+@app.route("/citations/<citation_id>/update", methods=["GET", "POST"])
 def update_citation(citation_id):
     citation = get_citation_by_id(citation_id)
     if not citation:
         flash("Citation not found", "error")
         return redirect("/")
+
+    if request.method == "GET":
+        return render_template("edit_citation.html", citation=citation)
 
     citation_type = request.form.get("citation_type")
     author = request.form.get("author")
