@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import text
 from config import db
 from entities.citation import Citation
@@ -7,6 +8,9 @@ def get_citations(query, sort):
     if not sort:
         sort = "title"
 
+    sql_query = "SELECT id, author, title, publisher, year, citation_type, doi FROM citations "
+    params = {}
+
     if query:
         search_term = query
 
@@ -15,20 +19,25 @@ def get_citations(query, sort):
         elif search_term.startswith("http://doi.org/"):
             search_term = search_term.replace("http://doi.org/", "")
 
-        result = db.session.execute(text(
-            "SELECT id, title, author, publisher, year, citation_type, doi FROM citations "
-            f"WHERE title ILIKE :query \
-            OR publisher ILIKE :query \
-            OR author ILIKE :query \
-            OR doi ILIKE :query \
-            ORDER BY {sort}"),
-            {"query": f"%{search_term}%"})
+        sql_query += "WHERE (title ILIKE :q OR author ILIKE :q OR publisher ILIKE :q OR doi ILIKE :q"
+        params["q"] = f"%{search_term}%"
 
-    else:
-        result = db.session.execute(
-            text(f"SELECT id, title, author, publisher, year, citation_type, doi FROM citations ORDER BY {sort}"))
+        if search_term.isdigit():
+            year_start = int(search_term + "0" * (4 - len(search_term)))
+            year_end = int(search_term + "9" * (4 - len(search_term)))
+            current_year = datetime.now().year
+            year_end = min(year_end, current_year)
+            sql_query += " OR year BETWEEN :year_start AND :year_end)"
+            params["year_start"] = year_start
+            params["year_end"] = year_end
+        else:
+            sql_query += ")"
 
+    sql_query += f" ORDER BY {sort}"
+
+    result = db.session.execute(text(sql_query), params)
     citations = result.fetchall()
+
     return [Citation(citation[0], citation[1], citation[2], citation[3],
                      citation[4], citation[5], citation[6]) for citation in citations]
 
