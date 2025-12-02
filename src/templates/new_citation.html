@@ -7,28 +7,28 @@ block page_title %} Add new citation {% endblock %} {% block body %}
   <div class="form-items">
     <select name="citation_type" id="citation_type">
       <option value="">Citation Type</option>
-      <option value="article">Article</option>
-      <option value="book">Book</option>
-      <option value="booklet">Booklet</option>
-      <option value="conference">Conference</option>
-      <option value="inbook">Inbook</option>
-      <option value="incollection">Incollection</option>
-      <option value="inproceedings">Inproceedings</option>
-      <option value="manual">Manual</option>
-      <option value="mastersthesis">Masters Thesis</option>
-      <option value="misc">Misc</option>
-      <option value="phdthesis">PhD Thesis</option>
-      <option value="proceedings">Proceedings</option>
-      <option value="techreport">Tech Report</option>
-      <option value="unpublished">Unpublished</option>
+      <option value="article" {% if citation_type == "article" %}selected{% endif %}>Article</option>
+      <option value="book" {% if citation_type == "book" %}selected{% endif %}>Book</option>
+      <option value="booklet" {% if citation_type == "booklet" %}selected{% endif %}>Booklet</option>
+      <option value="conference" {% if citation_type == "conference" %}selected{% endif %}>Conference</option>
+      <option value="inbook" {% if citation_type == "inbook" %}selected{% endif %}>Inbook</option>
+      <option value="incollection" {% if citation_type == "incollection" %}selected{% endif %}>Incollection</option>
+      <option value="inproceedings" {% if citation_type == "inproceedings" %}selected{% endif %}>Inproceedings</option>
+      <option value="manual" {% if citation_type == "manual" %}selected{% endif %}>Manual</option>
+      <option value="mastersthesis" {% if citation_type == "mastersthesis" %}selected{% endif %}>Masters Thesis</option>
+      <option value="misc" {% if citation_type == "misc" %}selected{% endif %}>Misc</option>
+      <option value="phdthesis" {% if citation_type == "phdthesis" %}selected{% endif %}>PhD Thesis</option>
+      <option value="proceedings" {% if citation_type == "proceedings" %}selected{% endif %}>Proceedings</option>
+      <option value="techreport" {% if citation_type == "techreport" %}selected{% endif %}>Tech Report</option>
+      <option value="unpublished" {% if citation_type == "unpublished" %}selected{% endif %}>Unpublished</option>
     </select>
-    <label for="author">Author: <input type="text" name="author" /></label>
-    <label for="title">Title: <input type="text" name="title" /></label>
+    <label for="author">Author: <input type="text" name="author" value="{{ author or '' }}" /></label>
+    <label for="title">Title: <input type="text" name="title" value="{{ title or '' }}" /></label>
     <label for="publisher"
-      >Publisher: <input type="text" name="publisher"
+      >Publisher: <input type="text" name="publisher" value="{{ publisher or '' }}"
     /></label>
-    <label for="year">Year: <input type="text" name="year" /></label>
-    <label for="doi"> DOI: <input id="doi" type="text" name="doi" /> </label>
+    <label for="year">Year: <input type="text" name="year" value="{{ year or '' }}" /></label>
+    <label for="doi"> DOI: <input id="doi" type="text" name="doi" value="{{ doi or '' }}" /> </label>
 
     <div class="form-buttons">
       <button id="add_citation_button" class="primary" type="submit">
