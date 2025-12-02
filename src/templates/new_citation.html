@@ -5,6 +5,19 @@ block page_title %} Add new citation {% endblock %} {% block body %}
   <h3>Citation:</h3>
 
   <div class="form-items">
+    <div id="doi-message"></div>
+
+    <label for="doi-fetch"
+      >Fetch info from DOI:
+      <input
+        id="doi-fetch"
+        type="text"
+        name="doi-fetch"
+        placeholder="e.g., https://doi.org/10.1234/example"
+        value=""
+      />
+    </label>
+
     <select name="citation_type" id="citation_type">
       <option value="">Citation Type</option>
       <option value="article">Article</option>
