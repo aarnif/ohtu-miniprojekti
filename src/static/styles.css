@@ -113,6 +113,16 @@ button.secondary:hover {
   color: #0066d6;
 }
 
+.form-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.form-buttons > button,
+.form-buttons > a {
+  flex-grow: 1;
+}
+
 #search-form {
   flex-direction: row;
   gap: 8px;
