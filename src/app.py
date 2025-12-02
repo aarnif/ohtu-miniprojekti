@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.citation_repository import get_citations, create_citation, delete_citation
+from repositories.citation_repository import get_citations, get_citation_by_id, create_citation, delete_citation
 from config import app, test_env
 from util import validate_citation, UserInputError
 from bibtex_generator import create_bibtex
@@ -56,6 +56,12 @@ def download_bibtex_file():
         bibtex_content,
         headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
     )
+
+
+@app.route("/citations/<int:citation_id>")
+def citation_view(citation_id):
+    citation = get_citation_by_id(citation_id)
+    return render_template("citation.html", citation=citation)
 
 
 @app.route("/citations/<citation_id>/delete", methods=["POST"])

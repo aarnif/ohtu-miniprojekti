@@ -41,15 +41,17 @@ block body %}
 {% else %}
 <ul class="citation-items">
   {% for citation in citations %}
-  <li class="citation-item">
-      <div>
-        <h3 class="citation-header">{{ citation.title }}</h3>
-        <p class="citation-author">By {{ citation.author }}</p>
-      </div>
-      <div class="citation-item-bottom">
-         <p class="citation-publisher">Published By {{ citation.publisher }}</p>
-         <p class="citation-year">{{ citation.year }}</p>
-      </div>
+    <li class="citation-item">
+      <a id="citation-item-link" href="/citations/{{ citation.citation_id }}">
+        <div>
+          <h3 class="citation-header">{{ citation.title }}</h3>
+          <p class="citation-author">By {{ citation.author }}</p>
+        </div>
+        <div class="citation-item-bottom">
+          <p class="citation-publisher">Published By {{ citation.publisher }}</p>
+          <p class="citation-year">{{ citation.year }}</p>
+        </div>
+      </a>
     </li>
   {% endfor %}
 </ul>

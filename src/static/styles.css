@@ -15,9 +15,18 @@ body {
   justify-content: center;
 }
 
+.page-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
 a {
   all: unset;
   display: flex;
+  cursor: pointer;
 }
 
 nav {
@@ -194,10 +203,15 @@ label {
 .citation-item {
   all: unset;
   display: flex;
-  flex-direction: column;
   padding: 8px;
   transition: 0.2s ease-in-out;
   border-radius: 8px;
+}
+
+#citation-item-link {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .citation-item:nth-child(even) {
@@ -229,4 +243,20 @@ label {
 .citation-publisher,
 .citation-year {
   margin-bottom: 0;
+}
+
+.citation-info {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.citation-page-icon {
+  width: 28px;
+  cursor: pointer;
+}
+
+.citation-doi-link {
+  color: #007bff;
+  text-decoration: underline;
 }
