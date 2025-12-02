@@ -101,7 +101,7 @@ def update_citation(citation_id):
         validate_citation(title, author, publisher, year, citation_type)
         edit_citation(citation_id, title, author,
                       publisher, year, citation_type, doi)
-        flash("Citation updated successfully!", "success")
+        flash("Citation edited successfully!", "success")
         return redirect("/")
 
     except UserInputError as error:
