@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 test_env = getenv("TEST_ENV") == "true"
+port = int(getenv("PORT", "5001"))
 print(f"Test environment: {test_env}")
 
 app = Flask(__name__)
