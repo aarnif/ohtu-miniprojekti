@@ -160,6 +160,14 @@ label {
   flex-direction: column;
 }
 
+.pending-message {
+  padding: 12px;
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #856404;
+  border-radius: 8px;
+}
+
 .error-message {
   padding: 12px;
   color: #c41e3a;
