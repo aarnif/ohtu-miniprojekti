@@ -8,7 +8,7 @@ def get_citations(query, sort):
     if not sort:
         sort = "title"
 
-    sql_query = "SELECT id, author, title, publisher, year, citation_type, doi FROM citations "
+    sql_query = "SELECT id, title, author, publisher, year, citation_type, doi FROM citations "
     params = {}
 
     if query:
