@@ -1,9 +1,16 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.citation_repository import get_citations, create_citation, delete_citation
+from repositories.citation_repository import (
+    get_citations,
+    create_citation,
+    delete_citation,
+    edit_citation,
+    get_citation_by_id,
+)
 from config import app, test_env
 from util import validate_citation, UserInputError
 from bibtex_generator import create_bibtex
+from entities.citation import Citation
 
 
 @app.route("/")
@@ -63,6 +70,52 @@ def download_bibtex_file():
 def delete(citation_id):
     delete_citation(citation_id)
     return redirect("/")
+
+
+@app.route("/citations/<citation_id>/edit")
+def edit_citation_form(citation_id):
+    citation = get_citation_by_id(citation_id)
+
+    if not citation:
+        flash("Citation not found", "error")
+        return redirect("/")
+
+    return render_template("edit_citation.html", citation=citation)
+
+
+@app.route("/citations/<citation_id>/update", methods=["POST"])
+def update_citation(citation_id):
+    citation = get_citation_by_id(citation_id)
+    if not citation:
+        flash("Citation not found", "error")
+        return redirect("/")
+
+    citation_type = request.form.get("citation_type")
+    author = request.form.get("author")
+    title = request.form.get("title")
+    publisher = request.form.get("publisher")
+    year = request.form.get("year")
+    doi = request.form.get("doi")
+
+    try:
+        validate_citation(title, author, publisher, year, citation_type)
+        edit_citation(citation_id, title, author,
+                      publisher, year, citation_type, doi)
+        flash("Citation updated successfully!", "success")
+        return redirect("/")
+
+    except UserInputError as error:
+        flash(str(error))
+        citation_with_user_input = Citation(
+            citation_id=citation_id,
+            title=title,
+            author=author,
+            publisher=publisher,
+            year=year,
+            citation_type=citation_type,
+            doi=doi
+        )
+        return render_template("edit_citation.html", citation=citation_with_user_input)
 
 
 # testausta varten oleva reitti
