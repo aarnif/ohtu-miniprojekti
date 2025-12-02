@@ -32,9 +32,18 @@ def citation_creation():
         validate_citation(title, author, publisher, year, citation_type)
         create_citation(title, author, publisher, year, citation_type, doi)
         return redirect("/")
+
     except UserInputError as error:
         flash(str(error))
-        return redirect("/new_citation")
+        return render_template(
+            "new_citation.html",
+            citation_type=citation_type,
+            author=author,
+            title=title,
+            publisher=publisher,
+            year=year,
+            doi=doi
+        )
 
 
 @app.route("/download_bibtex_file")
