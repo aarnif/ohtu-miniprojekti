@@ -110,3 +110,20 @@ class TestCitationValidation(unittest.TestCase):
                 "2027",
                 self.citation["citation_type"]
             )
+
+    def test_non_numeric_year_raises_error(self):
+        with self.assertRaises(UserInputError):
+            validate_citation(
+                self.citation["title"],
+                self.citation["author"],
+                self.citation["publisher"],
+                "abcd",
+                self.citation["citation_type"]
+            )
+            validate_citation(
+                self.citation["title"],
+                self.citation["author"],
+                self.citation["publisher"],
+                "202a",
+                self.citation["citation_type"]
+            )
