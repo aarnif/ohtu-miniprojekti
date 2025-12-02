@@ -31,6 +31,7 @@ def citation_creation():
     try:
         validate_citation(title, author, publisher, year, citation_type)
         create_citation(title, author, publisher, year, citation_type, doi)
+        flash("Citation created successfully!", "success")
         return redirect("/")
 
     except UserInputError as error:
