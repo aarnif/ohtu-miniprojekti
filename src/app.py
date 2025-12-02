@@ -7,9 +7,17 @@ from repositories.citation_repository import (
     edit_citation,
     get_citation_by_id,
 )
+from repositories.citation_repository import (
+    get_citations,
+    create_citation,
+    delete_citation,
+    edit_citation,
+    get_citation_by_id,
+)
 from config import app, test_env
 from util import validate_citation, UserInputError
 from bibtex_generator import create_bibtex
+from entities.citation import Citation
 from entities.citation import Citation
 
 
