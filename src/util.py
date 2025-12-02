@@ -2,7 +2,10 @@ class UserInputError(Exception):
     pass
 
 
-def validate_citation(title, author, publisher, year):
+def validate_citation(title, author, publisher, year, citation_type):
+    if not citation_type or citation_type == "":
+        raise UserInputError("Citation type is required")
+
     if len(title) < 3 or len(title) > 100:
         raise UserInputError("Title length must be between 3 and 100")
 

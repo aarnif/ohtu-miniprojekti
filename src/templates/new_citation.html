@@ -5,12 +5,30 @@ block page_title %} Add new citation {% endblock %} {% block body %}
   <h3>Citation:</h3>
 
   <div class="form-items">
+    <select name="citation_type" id="citation_type">
+      <option value="">Citation Type</option>
+      <option value="article">Article</option>
+      <option value="book">Book</option>
+      <option value="booklet">Booklet</option>
+      <option value="conference">Conference</option>
+      <option value="inbook">Inbook</option>
+      <option value="incollection">Incollection</option>
+      <option value="inproceedings">Inproceedings</option>
+      <option value="manual">Manual</option>
+      <option value="mastersthesis">Masters Thesis</option>
+      <option value="misc">Misc</option>
+      <option value="phdthesis">PhD Thesis</option>
+      <option value="proceedings">Proceedings</option>
+      <option value="techreport">Tech Report</option>
+      <option value="unpublished">Unpublished</option>
+    </select>
     <label for="author">Author: <input type="text" name="author" /></label>
     <label for="title">Title: <input type="text" name="title" /></label>
     <label for="publisher"
       >Publisher: <input type="text" name="publisher"
     /></label>
     <label for="year">Year: <input type="text" name="year" /></label>
+    <label for="doi"> DOI: <input id="doi" type="text" name="doi" /> </label>
 
     <button id="add_citation_button" class="primary" type="submit">Add</button>
 
