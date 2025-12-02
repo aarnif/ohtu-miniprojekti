@@ -32,6 +32,22 @@ form {
   flex-direction: column;
 }
 
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+}
+
+label span {
+  font-style: normal;
+  font-size: 14px;
+}
+
+label:has(input:focus) {
+  font-weight: bold;
+}
+
 a button {
   width: 100%;
 }
