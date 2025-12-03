@@ -22,3 +22,13 @@ Search with matching query should return citation
     Sleep  1s
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Page Should Not Contain  Clean Code: A Handbook of Agile Software Craftsmanship
+
+Search with number 20 should return all citations from years 2000-2025
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
+    Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003
+    Input Text  query  20
+    Sleep  1s
+    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
+    Check page contains citation  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003
+    Page Should Not Contain  Refactoring: Improving the Design of Existing Code
