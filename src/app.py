@@ -67,6 +67,12 @@ def download_bibtex_file():
     )
 
 
+@app.route("/citations/<int:citation_id>")
+def citation_view(citation_id):
+    citation = get_citation_by_id(citation_id)
+    return render_template("citation.html", citation=citation)
+
+
 @app.route("/citations/<citation_id>/delete", methods=["POST"])
 def delete(citation_id):
     delete_citation(citation_id)
