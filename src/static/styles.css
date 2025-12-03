@@ -251,6 +251,11 @@ label {
   justify-content: space-between;
 }
 
+.citation-options {
+  display: flex;
+  align-items: start;
+}
+
 .citation-page-icon {
   width: 28px;
   cursor: pointer;
