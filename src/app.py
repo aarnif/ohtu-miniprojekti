@@ -6,6 +6,7 @@ from repositories.citation_repository import (
     delete_citation,
     edit_citation,
     get_citation_by_id,
+    check_if_citation_exists
 )
 
 from config import app, test_env
@@ -36,6 +37,18 @@ def citation_creation():
     publisher = request.form.get("publisher")
     year = request.form.get("year")
     doi = request.form.get("doi")
+
+    if check_if_citation_exists(title, doi):
+        flash("Citation already exists!", "error")
+        return render_template(
+            "new_citation.html",
+            citation_type=citation_type,
+            author=author,
+            title=title,
+            publisher=publisher,
+            year=year,
+            doi=doi
+        )
 
     try:
         validate_citation(title, author, publisher, year, citation_type)
