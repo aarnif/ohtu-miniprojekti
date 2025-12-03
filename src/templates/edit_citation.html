@@ -34,7 +34,7 @@ block page_title %} Edit citation {% endblock %} {% block body %}
       <button id="update_citation_button" class="primary" type="submit">
         Update
       </button>
-      <a href="/">
+      <a href="/citations/{{ citation.citation_id }}">
         <button type="button" class="secondary">Cancel</button>
       </a>
     </div>
