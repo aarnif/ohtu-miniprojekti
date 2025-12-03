@@ -1,0 +1,44 @@
+{% extends "layout.html" %} {% block title %} Edit citation {% endblock %} {%
+block page_title %} Edit citation {% endblock %} {% block body %}
+
+<form action="/citations/{{ citation.citation_id }}/update" method="post">
+  <h3>Citation:</h3>
+
+  <div class="form-items">
+    <select name="citation_type" id="citation_type">
+      <option value="">Citation Type</option>
+      <option value="article" {% if citation.citation_type == "article" %}selected{% endif %}>Article</option>
+      <option value="book" {% if citation.citation_type == "book" %}selected{% endif %}>Book</option>
+      <option value="booklet" {% if citation.citation_type == "booklet" %}selected{% endif %}>Booklet</option>
+      <option value="conference" {% if citation.citation_type == "conference" %}selected{% endif %}>Conference</option>
+      <option value="inbook" {% if citation.citation_type == "inbook" %}selected{% endif %}>Inbook</option>
+      <option value="incollection" {% if citation.citation_type == "incollection" %}selected{% endif %}>Incollection</option>
+      <option value="inproceedings" {% if citation.citation_type == "inproceedings" %}selected{% endif %}>Inproceedings</option>
+      <option value="manual" {% if citation.citation_type == "manual" %}selected{% endif %}>Manual</option>
+      <option value="mastersthesis" {% if citation.citation_type == "mastersthesis" %}selected{% endif %}>Masters Thesis</option>
+      <option value="misc" {% if citation.citation_type == "misc" %}selected{% endif %}>Misc</option>
+      <option value="phdthesis" {% if citation.citation_type == "phdthesis" %}selected{% endif %}>PhD Thesis</option>
+      <option value="proceedings" {% if citation.citation_type == "proceedings" %}selected{% endif %}>Proceedings</option>
+      <option value="techreport" {% if citation.citation_type == "techreport" %}selected{% endif %}>Tech Report</option>
+      <option value="unpublished" {% if citation.citation_type == "unpublished" %}selected{% endif %}>Unpublished</option>
+    </select>
+    <label for="author">Author: <input type="text" name="author" value="{{ citation.author or '' }}" /></label>
+    <label for="title">Title: <input type="text" name="title" value="{{ citation.title or '' }}" /></label>
+    <label for="publisher"
+      >Publisher: <input type="text" name="publisher" value="{{ citation.publisher or '' }}"
+    /></label>
+    <label for="year">Year: <input type="text" name="year" value="{{ citation.year or '' }}" /></label>
+    <label for="doi"> DOI: <input id="doi" type="text" name="doi" value="{{ citation.doi or '' }}" /> </label>
+
+    <div class="form-buttons">
+      <button id="update_citation_button" class="primary" type="submit">
+        Update
+      </button>
+      <a href="/">
+        <button type="button" class="secondary">Cancel</button>
+      </a>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
