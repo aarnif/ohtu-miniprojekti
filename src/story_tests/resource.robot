@@ -39,3 +39,10 @@ Add Citation
     Input Text  publisher   ${publisher}
     Input Text  year        ${year}
     Click Button  add_citation_button
+
+Check page contains citation
+    [Arguments]  ${author}  ${title}  ${publisher}  ${year}
+    Page Should Contain  ${author}
+    Page Should Contain  ${title}
+    Page Should Contain  ${publisher}
+    Page Should Contain  ${year}
