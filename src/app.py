@@ -18,8 +18,9 @@ from entities.citation import Citation
 def index():
     query = request.args.get("query", "")
     sort = request.args.get('sort', "")
-    citations = get_citations(query, sort)
-    return render_template("index.html", citations=citations, query=query, sort=sort)
+    citation_type = request.args.get('citation_type', "")
+    citations = get_citations(query, sort, citation_type)
+    return render_template("index.html", citations=citations, query=query, sort=sort, citation_type=citation_type)
 
 
 @app.route("/new_citation")
@@ -59,7 +60,8 @@ def citation_creation():
 def download_bibtex_file():
     query = request.args.get("query", "")
     sort = request.args.get('sort', "")
-    citations = get_citations(query, sort)
+    citation_type = request.args.get('citation_type', "")
+    citations = get_citations(query, sort, citation_type)
     bibtex_content = create_bibtex(citations)
     return Response(
         bibtex_content,
