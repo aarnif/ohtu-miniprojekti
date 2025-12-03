@@ -25,7 +25,17 @@ Open And Configure Browser
         Set Selenium Speed  ${DELAY}
     END
     Open Browser  browser=${BROWSER}  options=${options}
-    
+
 Reset Citations
     Go To  ${RESET_URL}
 
+Add Citation
+    [Arguments]  ${citation_type}  ${author}  ${title}  ${publisher}  ${year}
+    Go To  ${HOME_URL}
+    Click Link  Create new citation
+    Select From List By Value  citation_type  ${citation_type}
+    Input Text  author      ${author}
+    Input Text  title       ${title}
+    Input Text  publisher   ${publisher}
+    Input Text  year        ${year}
+    Click Button  add_citation_button
