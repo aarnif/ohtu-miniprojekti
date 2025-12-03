@@ -33,3 +33,13 @@ Citation can be deleted
     Click Element  delete
     Click Button  confirm
     Page Should Contain  No citations.
+
+Citation can be edited
+    Add Citation  book  John Doe  Aku Ankka  Otava  2000
+    Page Should Contain  John Doe  Aku Ankka
+    Go To  ${HOME_URL}
+    Click Link  citation-item-link
+    Click Element  update
+    Input Text  title  Kalle Ankka
+    Click Button  update_citation_button
+    Page Should Contain  John Doe  Kalle Ankka
