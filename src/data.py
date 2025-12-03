@@ -117,7 +117,7 @@ CITATIONS = [
         "publisher": "Python Software Foundation",
         "year": 2020,
         "citation_type": "manual",
-        "doi": "10.5281/zenodo.3888494"
+        "doi": "10.5281/3888494"
     },
     {
         "author": "Douglas Crockford",
@@ -173,7 +173,7 @@ CITATIONS = [
         "publisher": "Proceedings of the Linux Symposium",
         "year": 2005,
         "citation_type": "inproceedings",
-        "doi": "10.5281/zenodo.2555028"
+        "doi": "10.5281/2555028"
     },
     {
         "author": "Grace Hopper",
@@ -181,7 +181,7 @@ CITATIONS = [
         "publisher": "IEEE Annals of the History of Computing",
         "year": 1981,
         "citation_type": "article",
-        "doi": "10.1109/MAHC.1981.10011"
+        "doi": "10.1109/1981.10011"
     },
     {
         "author": "Alan Turing",
@@ -189,7 +189,7 @@ CITATIONS = [
         "publisher": "Conference on Computability Theory",
         "year": 1936,
         "citation_type": "conference",
-        "doi": "10.1112/S0024611500026757"
+        "doi": "10.1112/24611500026757"
     },
     {
         "author": "Jane Smith",
@@ -197,7 +197,7 @@ CITATIONS = [
         "publisher": "University of Technology",
         "year": 2021,
         "citation_type": "phdthesis",
-        "doi": "10.5281/zenodo.4567890"
+        "doi": "10.5281/4567890"
     },
     {
         "author": "John Doe",
@@ -205,7 +205,7 @@ CITATIONS = [
         "publisher": "University of Science",
         "year": 2020,
         "citation_type": "mastersthesis",
-        "doi": "10.5281/zenodo.3654321"
+        "doi": "10.5281/3654321"
     },
     {
         "author": "W3C",
@@ -213,6 +213,6 @@ CITATIONS = [
         "publisher": "World Wide Web Consortium",
         "year": 2021,
         "citation_type": "misc",
-        "doi": "10.5281/zenodo.4567234"
+        "doi": "10.5281/4567234"
     }
 ]
