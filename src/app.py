@@ -97,12 +97,11 @@ def delete(citation_id):
 
 @app.route("/citations/<citation_id>/update", methods=["GET", "POST"])
 def update_citation(citation_id):
-    citation = get_citation_by_id(citation_id)
-    if not citation:
-        flash("Citation not found", "error")
-        return redirect("/")
-
     if request.method == "GET":
+        citation = get_citation_by_id(citation_id)
+        if not citation:
+            flash("Citation not found", "error")
+            return redirect("/")
         return render_template("edit_citation.html", citation=citation)
 
     citation_type = request.form.get("citation_type")
@@ -117,7 +116,7 @@ def update_citation(citation_id):
         edit_citation(citation_id, title, author,
                       publisher, year, citation_type, doi)
         flash("Citation edited successfully!", "success")
-        return redirect("/")
+        return redirect(f"/citations/{citation_id}")
 
     except UserInputError as error:
         flash(str(error))
