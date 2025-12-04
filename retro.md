@@ -29,3 +29,20 @@
 
 - Työskentely sujui ja saavutettiin viikon tavoitteet
 - Työskentely oli myös aiempaa itsenäisempää
+
+## Viikko 3:
+
+### Mad:
+
+- Voitaisiin tehdä useampia committeja
+- Mergetyt haarat poistetaan
+
+### Sad:
+
+- Kaikkia tavoitteita ei olla saavutettu
+- Välillä tuli tehtyä liikaa työtunteja
+
+### Glad:
+
+- Projekti eteni todella paljon ja nopeasti
+- Kaikki ovat olleet läsnä tapaamisesti
