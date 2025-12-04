@@ -1,6 +1,7 @@
 import repositories.citation_repository as cit_repo
 import unittest
 from app import app
+from config import db
 
 
 class TestCitationRepository(unittest.TestCase):
@@ -9,6 +10,8 @@ class TestCitationRepository(unittest.TestCase):
         self.app = app
         self.context = self.app.app_context()
         self.context.push()
+
+        db.create_all()
 
     def tearDown(self):
         self.context.pop()
