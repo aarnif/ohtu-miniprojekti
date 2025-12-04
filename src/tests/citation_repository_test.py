@@ -1,7 +1,7 @@
 import repositories.citation_repository as cit_repo
 import unittest
 from app import app
-from config import db
+from db_helper import populate_db, setup_db, reset_db
 
 
 class TestCitationRepository(unittest.TestCase):
@@ -10,10 +10,11 @@ class TestCitationRepository(unittest.TestCase):
         self.app = app
         self.context = self.app.app_context()
         self.context.push()
-
-        db.create_all()
+        setup_db()
+        populate_db()
 
     def tearDown(self):
+        reset_db()
         self.context.pop()
 
     def test_citations_are_recieved(self):
@@ -36,6 +37,9 @@ class TestCitationRepository(unittest.TestCase):
         cit_repo.create_citation("The Beauty of Code", "Tdot", "Universal", "2022", "book", "10.1000/782")
         citations = cit_repo.get_citations("code", "title", "book")
         self.assertTrue(len(citations) > 0)
+
+        for c in citations:
+            self.assertIn("code", c.title.lower())
 
     def test_citation_is_successfully_created(self):
         before = len(cit_repo.get_citations("", "", ""))
