@@ -5,7 +5,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 1999,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/311424"
     },
     {
         "author": "Robert C. Martin",
@@ -13,7 +13,7 @@ CITATIONS = [
         "publisher": "Prentice Hall",
         "year": 2008,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/1477316"
     },
     {
         "author": "Eric Evans",
@@ -21,7 +21,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 2003,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/829128"
     },
     {
         "author": "Andrew Hunt",
@@ -29,7 +29,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 1999,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/252974"
     },
     {
         "author": "Kent Beck",
@@ -37,7 +37,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 2002,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/579193"
     },
     {
         "author": "Erich Gamma",
@@ -45,7 +45,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 1994,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/186897"
     },
     {
         "author": "David Thomas",
@@ -53,7 +53,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 2019,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/3231815"
     },
     {
         "author": "Steve McConnell",
@@ -61,7 +61,7 @@ CITATIONS = [
         "publisher": "Microsoft Press",
         "year": 2004,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/1096143"
     },
     {
         "author": "Michael Feathers",
@@ -69,7 +69,7 @@ CITATIONS = [
         "publisher": "Prentice Hall",
         "year": 2004,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/1119287"
     },
     {
         "author": "Joshua Bloch",
@@ -77,7 +77,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 2008,
         "citation_type": "book",
-        "doi": "10.1234/effective-java"
+        "doi": "10.5555/1377533"
     },
     {
         "author": "Bruce Eckel",
@@ -85,7 +85,7 @@ CITATIONS = [
         "publisher": "Prentice Hall",
         "year": 2006,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/1199837"
     },
     {
         "author": "Jon Skeet",
@@ -93,7 +93,7 @@ CITATIONS = [
         "publisher": "C# Station",
         "year": 2019,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/3438109"
     },
     {
         "author": "Andrew Hunt",
@@ -101,7 +101,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 1999,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/252974"
     },
     {
         "author": "Bjarne Stroustrup",
@@ -109,7 +109,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 2013,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/2543979"
     },
     {
         "author": "Guido van Rossum",
@@ -117,7 +117,7 @@ CITATIONS = [
         "publisher": "Python Software Foundation",
         "year": 2020,
         "citation_type": "manual",
-        "doi": None
+        "doi": "10.5281/3888494"
     },
     {
         "author": "Douglas Crockford",
@@ -125,7 +125,7 @@ CITATIONS = [
         "publisher": "O'Reilly",
         "year": 2008,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/1386390"
     },
     {
         "author": "Fernando Perez",
@@ -133,7 +133,7 @@ CITATIONS = [
         "publisher": "O'Reilly",
         "year": 2015,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/2767058"
     },
     {
         "author": "Mary Poppendieck",
@@ -141,7 +141,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 2003,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/829829"
     },
     {
         "author": "Tom DeMarco",
@@ -149,7 +149,7 @@ CITATIONS = [
         "publisher": "Dorset House",
         "year": 1987,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/541948"
     },
     {
         "author": "Donald Knuth",
@@ -157,7 +157,7 @@ CITATIONS = [
         "publisher": "Addison-Wesley",
         "year": 1968,
         "citation_type": "book",
-        "doi": None
+        "doi": "10.5555/1077084"
     },
     {
         "author": "Susan L. Graham",
@@ -173,7 +173,7 @@ CITATIONS = [
         "publisher": "Proceedings of the Linux Symposium",
         "year": 2005,
         "citation_type": "inproceedings",
-        "doi": None
+        "doi": "10.5281/2555028"
     },
     {
         "author": "Grace Hopper",
@@ -181,7 +181,7 @@ CITATIONS = [
         "publisher": "IEEE Annals of the History of Computing",
         "year": 1981,
         "citation_type": "article",
-        "doi": "10.1109/MAHC.1981.10011"
+        "doi": "10.1109/1981.10011"
     },
     {
         "author": "Alan Turing",
@@ -189,7 +189,7 @@ CITATIONS = [
         "publisher": "Conference on Computability Theory",
         "year": 1936,
         "citation_type": "conference",
-        "doi": None
+        "doi": "10.1112/24611500026757"
     },
     {
         "author": "Jane Smith",
@@ -197,7 +197,7 @@ CITATIONS = [
         "publisher": "University of Technology",
         "year": 2021,
         "citation_type": "phdthesis",
-        "doi": None
+        "doi": "10.5281/4567890"
     },
     {
         "author": "John Doe",
@@ -205,7 +205,7 @@ CITATIONS = [
         "publisher": "University of Science",
         "year": 2020,
         "citation_type": "mastersthesis",
-        "doi": None
+        "doi": "10.5281/3654321"
     },
     {
         "author": "W3C",
@@ -213,6 +213,6 @@ CITATIONS = [
         "publisher": "World Wide Web Consortium",
         "year": 2021,
         "citation_type": "misc",
-        "doi": None
+        "doi": "10.5281/4567234"
     }
 ]

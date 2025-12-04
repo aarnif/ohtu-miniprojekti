@@ -4,11 +4,11 @@ from config import db
 from entities.citation import Citation
 
 
-def get_citations(query, sort):
+def get_citations(query, sort, citation_type):
     if not sort:
         sort = "title"
 
-    sql_query = "SELECT id, author, title, publisher, year, citation_type, doi FROM citations "
+    sql_query = "SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE 1=1 "
     params = {}
 
     if query:
@@ -17,7 +17,7 @@ def get_citations(query, sort):
         elif query.startswith("http://doi.org/"):
             query = query.replace("http://doi.org/", "")
 
-        sql_query += "WHERE (title ILIKE :q OR author ILIKE :q OR publisher ILIKE :q OR doi ILIKE :q"
+        sql_query += "AND (title ILIKE :q OR author ILIKE :q OR publisher ILIKE :q OR doi ILIKE :q"
         params["q"] = f"%{query}%"
 
         if query.isdigit():
@@ -30,6 +30,10 @@ def get_citations(query, sort):
             params["year_end"] = year_end
         else:
             sql_query += ")"
+
+    if citation_type:
+        sql_query += " AND citation_type = :citation_type"
+        params["citation_type"] = citation_type
 
     sql_query += f" ORDER BY {sort}"
 
@@ -79,3 +83,16 @@ def get_citation_by_id(citation_id):
         return Citation(citation[0], citation[1], citation[2], citation[3],
                         citation[4], citation[5], citation[6])
     return None
+
+
+def check_if_citation_exists(title, doi=None):
+    query = "SELECT id, author, title, publisher, year, citation_type, doi FROM citations WHERE title = :title"
+    params = {"title": title}
+
+    if doi:
+        query += " OR doi = :doi"
+        params["doi"] = doi
+
+    result = db.session.execute(text(query), params)
+    citation_result = result.fetchone()
+    return citation_result
