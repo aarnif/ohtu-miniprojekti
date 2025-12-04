@@ -83,3 +83,16 @@ def get_citation_by_id(citation_id):
         return Citation(citation[0], citation[1], citation[2], citation[3],
                         citation[4], citation[5], citation[6])
     return None
+
+
+def check_if_citation_exists(title, doi=None):
+    query = "SELECT id, author, title, publisher, year, citation_type, doi FROM citations WHERE title = :title"
+    params = {"title": title}
+
+    if doi:
+        query += " OR doi = :doi"
+        params["doi"] = doi
+
+    result = db.session.execute(text(query), params)
+    citation_result = result.fetchone()
+    return citation_result
