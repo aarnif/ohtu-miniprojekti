@@ -12,22 +12,19 @@ At start there are no citations
     Page Should Contain  No citations.
 
 First citation can be added
-    Add Citation  book  John Doe  Aku Ankka  Otava  2000
-    Page Should Contain  John Doe  Aku Ankka
-    Page Should Contain  Otava  2000
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
 
 Second citation can be added
-    Add Citation  book   John Doe   Aku Ankka   Otava   2000
-    Add Citation  article   Mary Jane  Minni Hiiri  Tammi   2003
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
 
-    Page Should Contain  John Doe  Aku Ankka
-    Page Should Contain  Otava  2000
-    Page Should Contain  Mary Jane  Minni Hiiri
-    Page Should Contain  Tammi  2003
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
+    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
 
 Citation can be deleted
-    Add Citation  book  John Doe  Aku Ankka  Otava  2000
-    Page Should Contain  John Doe  Aku Ankka
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
     Click Element  delete
@@ -35,11 +32,11 @@ Citation can be deleted
     Page Should Contain  No citations.
 
 Citation can be edited
-    Add Citation  book  John Doe  Aku Ankka  Otava  2000
-    Page Should Contain  John Doe  Aku Ankka
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
     Click Element  update
-    Input Text  title  Kalle Ankka
+    Input Text  title  Edited title
     Click Button  update_citation_button
-    Page Should Contain  John Doe  Kalle Ankka
+    Check page contains citation  Martin Fowler  Edited title  Addison-Wesley  1999
