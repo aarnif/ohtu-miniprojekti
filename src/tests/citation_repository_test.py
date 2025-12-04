@@ -35,7 +35,7 @@ class TestCitationRepository(unittest.TestCase):
 
     def test_citations_searched_with_query_and_sort(self):
         cit_repo.create_citation("The Beauty of Code", "Tdot", "Universal", "2022", "book", "10.1000/782")
-        citations = cit_repo.get_citations("code", "title", "")
+        citations = cit_repo.get_citations("code", "title", "book")
         self.assertTrue(len(citations) > 0)
 
         for c in citations:
