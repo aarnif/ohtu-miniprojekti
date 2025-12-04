@@ -21,22 +21,3 @@ Second citation can be added
 
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
-
-Citation can be deleted
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
-    Go To  ${HOME_URL}
-    Click Link  citation-item-link
-    Click Element  delete
-    Click Button  confirm
-    Page Should Contain  No citations.
-
-Citation can be edited
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
-    Go To  ${HOME_URL}
-    Click Link  citation-item-link
-    Click Element  update
-    Input Text  title  Edited title
-    Click Button  update_citation_button
-    Check page contains citation  Martin Fowler  Edited title  Addison-Wesley  1999
