@@ -30,7 +30,7 @@ Reset Citations
     Go To  ${RESET_URL}
 
 Add Citation
-    [Arguments]  ${citation_type}  ${author}  ${title}  ${publisher}  ${year}
+    [Arguments]  ${citation_type}  ${author}  ${title}  ${publisher}  ${year}  ${doi}
     Go To  ${HOME_URL}
     Click Link  Create new citation
     Select From List By Value  citation_type  ${citation_type}
@@ -38,4 +38,12 @@ Add Citation
     Input Text  title       ${title}
     Input Text  publisher   ${publisher}
     Input Text  year        ${year}
+    Input Text  doi        ${doi}
     Click Button  add_citation_button
+
+Check page contains citation
+    [Arguments]  ${author}  ${title}  ${publisher}  ${year}
+    Page Should Contain  ${author}
+    Page Should Contain  ${title}
+    Page Should Contain  ${publisher}
+    Page Should Contain  ${year}
