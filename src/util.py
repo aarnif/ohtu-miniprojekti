@@ -23,5 +23,9 @@ def validate_citation(title, author, publisher, year, citation_type):
     if len(year) != 4:
         raise UserInputError("Year length must be 4")
 
+    if year_int < 1000:
+        raise UserInputError(
+            "Year must be a valid year between 1000 and the current year.")
+
     if year_int > 2025:
         raise UserInputError("Year cannot be in the future")
