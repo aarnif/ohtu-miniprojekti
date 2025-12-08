@@ -410,6 +410,10 @@ label {
   text-decoration: underline;
 }
 
+.back-button {
+  margin-top: 32px;
+}
+
 dialog {
   padding: 24px;
   border-radius: 8px;
