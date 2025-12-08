@@ -3,31 +3,45 @@
 @import url("https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap");
 
 :root {
-  --bg-primary: #fafafa;
-  --bg-secondary: #f0f0f0;
-  --bg-hover: #d9d9d9;
-  --bg-error: #ffe6e6;
-  --bg-warning: #fff3cd;
-  --bg-success: #d4edda;
+  color-scheme: light dark;
+  --bg-primary: light-dark(#fafafa, #0a0a0a);
+  --bg-secondary: light-dark(#f0f0f0, #2a2a2a);
+  --bg-hover: light-dark(#d9d9d9, #3a3a3a);
+  --bg-error: light-dark(#ffe6e6, #2a1515);
+  --bg-warning: light-dark(#fff3cd, #2a2415);
+  --bg-success: light-dark(#d4edda, #1a2e1a);
 
-  --text-primary: #000000;
-  --text-link: #007bff;
-  --text-error: #c41e3a;
-  --text-warning: #856404;
-  --text-success: #155724;
+  --text-primary: light-dark(#000000, #e0e0e0);
+  --text-link: light-dark(#007bff, #0d8cff);
+  --text-error: light-dark(#c41e3a, #ff6b6b);
+  --text-warning: light-dark(#856404, #ffa94d);
+  --text-success: light-dark(#155724, #51cf66);
 
-  --border-primary: #007bff;
-  --border-hover: #0066d6;
-  --border-error: #c41e3a;
-  --border-warning: #856404;
-  --border-success: #155724;
+  --icon-color: light-dark(#000000, #e0e0e0);
 
-  --button-primary-bg: #007bff;
-  --button-primary-hover: #0066d6;
+  --border-primary: light-dark(#007bff, #0d8cff);
+  --border-hover: light-dark(#0066d6, #0a70cc);
+  --border-error: light-dark(#c41e3a, #ff6b6b);
+  --border-warning: light-dark(#856404, #ffa94d);
+  --border-success: light-dark(#155724, #51cf66);
 
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.15);
-  --shadow-button: 0 2px 0px oklch(37.9% 0.146 265.522);
+  --button-primary-bg: light-dark(#007bff, #0d8cff);
+  --button-primary-hover: light-dark(#0066d6, #0a70cc);
+
+  --shadow-sm: light-dark(
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.3)
+  );
+  --shadow-md: light-dark(
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.15),
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.3)
+  );
+  --shadow-button: light-dark(
+    0 2px 0px oklch(37.9% 0.146 265.522),
+    0 2px 0px oklch(37.9% 0.146 265.522)
+  );
 }
 
 body {
@@ -320,6 +334,13 @@ label {
 .citation-options {
   display: flex;
   align-items: start;
+}
+
+.citation-page-icon,
+.search-icon,
+.citation-item-icon {
+  fill: var(--icon-color);
+  stroke: var(--icon-color);
 }
 
 .citation-page-icon {
