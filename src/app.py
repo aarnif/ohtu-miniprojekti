@@ -82,9 +82,16 @@ def download_bibtex_file():
     )
 
 
-@app.route("/citations/<int:citation_id>")
+@app.route("/citations/<citation_id>")
 def citation_view(citation_id):
-    citation = get_citation_by_id(citation_id)
+    try:
+        citation_id_int = int(citation_id)
+    except (ValueError, TypeError):
+        return render_template("citation_not_found.html"), 404
+
+    citation = get_citation_by_id(citation_id_int)
+    if not citation:
+        return render_template("citation_not_found.html"), 404
     return render_template("citation.html", citation=citation)
 
 
@@ -138,3 +145,8 @@ if test_env:
     def reset_database():
         reset_db()
         return jsonify({'message': "db reset"})
+
+
+@app.errorhandler(404)
+def page_not_found(_e):
+    return render_template("page_not_found.html"), 404
