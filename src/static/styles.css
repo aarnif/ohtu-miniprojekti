@@ -185,6 +185,14 @@ label {
   flex-direction: column;
 }
 
+.notification {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+}
+
 .pending-message {
   padding: 12px;
   color: #856404;
@@ -207,6 +215,20 @@ label {
   background-color: #d4edda;
   border: 1px solid #155724;
   border-radius: 8px;
+}
+
+#close-notification-icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.error-icon {
+  fill: #c41e3a;
+}
+
+.success-icon {
+  fill: #155724;
 }
 
 .citation-items {
