@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap");
 
 :root {
-  color-scheme: light dark;
   --bg-primary: light-dark(#fafafa, #0a0a0a);
   --bg-secondary: light-dark(#f0f0f0, #2a2a2a);
   --bg-hover: light-dark(#d9d9d9, #3a3a3a);
@@ -44,6 +43,10 @@
   );
 }
 
+.dark {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -79,6 +82,60 @@ h5 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+}
+
+#dark-mode-toggle {
+  box-shadow: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.toggle-track {
+  display: flex;
+  height: 32px;
+  width: 64px;
+  border-radius: 9999px;
+  background-color: var(--bg-hover);
+  transition: background-color 0.3s ease;
+}
+
+.toggle-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  margin: 4px;
+  border-radius: 9999px;
+  background-color: #fafafa;
+  transition: transform 0.3s ease;
+}
+
+.dark .toggle-thumb {
+  transform: translateX(32px);
+}
+
+.toggle-icon {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+
+.toggle-icon-close {
+  display: block;
+}
+
+.dark .toggle-icon-close {
+  display: none;
+}
+
+.toggle-icon-check {
+  display: none;
+}
+
+.dark .toggle-icon-check {
+  display: block;
 }
 
 a {
