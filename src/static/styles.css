@@ -2,13 +2,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap");
 
+:root {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --bg-hover: #d9d9d9;
+  --bg-error: #ffe6e6;
+  --bg-warning: #fff3cd;
+  --bg-success: #d4edda;
+
+  --text-primary: #000000;
+  --text-link: #007bff;
+  --text-error: #c41e3a;
+  --text-warning: #856404;
+  --text-success: #155724;
+
+  --border-primary: #007bff;
+  --border-hover: #0066d6;
+  --border-error: #c41e3a;
+  --border-warning: #856404;
+  --border-success: #155724;
+
+  --button-primary-bg: #007bff;
+  --button-primary-hover: #0066d6;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0 2px 0px oklch(37.9% 0.146 265.522);
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fafafa;
+  background-color: var(--bg-primary);
   font-family: "Roboto", sans-serif;
 }
 
@@ -83,7 +111,7 @@ select {
   padding-bottom: 8px;
   padding-left: 4px;
   padding-right: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   border: 2px solid transparent;
   border-radius: 8px;
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -91,13 +119,13 @@ select {
 
 input:hover,
 select:hover {
-  border-color: #007bff;
+  border-color: var(--border-primary);
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--border-primary);
 }
 
 button {
@@ -105,7 +133,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-  box-shadow: 0 2px 0px oklch(37.9% 0.146 265.522);
+  box-shadow: var(--shadow-button);
 }
 
 button:active {
@@ -114,28 +142,28 @@ button:active {
 }
 
 button.primary {
-  background-color: #007bff;
+  background-color: var(--button-primary-bg);
   color: white;
-  border: 2px solid #007bff;
+  border: 2px solid var(--button-primary-bg);
 }
 
 button.primary:focus,
 button.primary:hover {
-  background-color: #0066d6;
-  border: 2px solid #0066d6;
+  background-color: var(--button-primary-hover);
+  border: 2px solid var(--button-primary-hover);
 }
 
 button.secondary {
   background-color: transparent;
-  color: #007bff;
-  border: 2px solid #007bff;
+  color: var(--button-primary-bg);
+  border: 2px solid var(--button-primary-bg);
 }
 
 button.secondary:focus,
 button.secondary:hover {
-  background-color: #f0f0f0;
-  border-color: #0066d6;
-  color: #0066d6;
+  background-color: var(--bg-secondary);
+  border-color: var(--border-hover);
+  color: var(--button-primary-hover);
 }
 
 .form-buttons {
@@ -195,25 +223,25 @@ label {
 
 .pending-message {
   padding: 12px;
-  color: #856404;
-  background-color: #fff3cd;
-  border: 1px solid #856404;
+  color: var(--text-warning);
+  background-color: var(--bg-warning);
+  border: 1px solid var(--border-warning);
   border-radius: 8px;
 }
 
 .error-message {
   padding: 12px;
-  color: #c41e3a;
-  background-color: #ffe6e6;
-  border: 1px solid #c41e3a;
+  color: var(--text-error);
+  background-color: var(--bg-error);
+  border: 1px solid var(--border-error);
   border-radius: 8px;
 }
 
 .success-message {
   padding: 12px;
-  color: #155724;
-  background-color: #d4edda;
-  border: 1px solid #155724;
+  color: var(--text-success);
+  background-color: var(--bg-success);
+  border: 1px solid var(--border-success);
   border-radius: 8px;
 }
 
@@ -224,11 +252,11 @@ label {
 }
 
 .error-icon {
-  fill: #c41e3a;
+  fill: var(--text-error);
 }
 
 .success-icon {
-  fill: #155724;
+  fill: var(--text-success);
 }
 
 .citation-items {
@@ -253,15 +281,15 @@ label {
 }
 
 .citation-item:nth-child(even) {
-  background-color: #f0f0f0;
+  background-color: var(--bg-secondary);
 }
 
 .citation-item:nth-child(even):hover {
-  background-color: #d9d9d9;
+  background-color: var(--bg-hover);
 }
 
 .citation-item:nth-child(odd):hover {
-  background-color: #f0f0f0;
+  background-color: var(--bg-secondary);
 }
 
 .citation-header {
@@ -300,7 +328,7 @@ label {
 }
 
 .citation-doi-link {
-  color: #007bff;
+  color: var(--text-link);
   text-decoration: underline;
 }
 
@@ -308,7 +336,7 @@ dialog {
   padding: 24px;
   border-radius: 8px;
   border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
   max-width: 400px;
   animation: slideIn 0.3s ease-in-out;
 }
