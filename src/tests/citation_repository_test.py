@@ -74,3 +74,8 @@ class TestCitationRepository(unittest.TestCase):
         self.assertEqual(updated.title, "Charlie And The Chocolate Factory")
         self.assertEqual(updated.doi, "10.1000/879")
         self.assertEqual(updated.publisher, "Pearson")
+
+    def test_citation_can_be_checked(self):
+        cit_repo.create_citation("The Great Gatsby", "Scott Fitzgerald", "Scholastic", "154", "book", "10.1000/188")
+        self.assertIsNotNone(cit_repo.check_if_citation_exists("The Great Gatsby"))
+        self.assertIsNotNone(cit_repo.check_if_citation_exists("The Great Gatsby", "10.1000/188"))
