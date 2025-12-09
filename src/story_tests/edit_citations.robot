@@ -13,5 +13,5 @@ Citation can be edited
     Click Link  citation-item-link
     Click Element  update
     Input Text  title  Edited title
-    Click Button  update_citation_button
+    Click Button  edit_citation_button
     Check page contains citation  Martin Fowler  Edited title  Addison-Wesley  1999

@@ -31,8 +31,8 @@ block page_title %} Edit citation {% endblock %} {% block body %}
     <label for="doi"> DOI: <input id="doi" type="text" name="doi" value="{{ citation.doi or '' }}" /> </label>
 
     <div class="form-buttons">
-      <button id="update_citation_button" class="primary" type="submit">
-        Update
+      <button id="edit_citation_button" class="primary" type="submit">
+        Edit
       </button>
       <a href="/citations/{{ citation.citation_id }}">
         <button type="button" class="secondary">Cancel</button>
