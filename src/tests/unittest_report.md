@@ -12,3 +12,7 @@ Yksikkötestit testaavat citation_repository-tiedoston toimivuutta. Tiedosto hoi
 ## validate_citation_test.py
 
 Yksikkötestit testaavat syötteet viiteiden tietokantaan. Yksikkötestit tarkistavat, että vialliset viitteiden syötteet ei lisätä tietokantaan. Syötteitä tarkastetaan util-tiedoston 'validate_citation'-funktion sekä UserInputError-luokan avulla.
+
+Projektin testikattavuus on keskimäärin yli 70%, joista kaikki sovelluslogiikkaan liittyviä ohjelmia testataan perusteellisesti yli 90 prosentin testikattavuudella
+
+![testikattavuudesta kuvakaappaus](image.png)
