@@ -1,7 +1,7 @@
 {% extends "layout.html" %} {% block title %} Edit citation {% endblock %} {%
 block page_title %} Edit citation {% endblock %} {% block body %}
 
-<form action="/citations/{{ citation.citation_id }}/update" method="post">
+<form action="/citations/{{ citation.citation_id }}/edit" method="post">
   <h3>Citation:</h3>
 
   <div class="form-items">
@@ -22,8 +22,8 @@ block page_title %} Edit citation {% endblock %} {% block body %}
       <option value="techreport" {% if citation.citation_type == "techreport" %}selected{% endif %}>Tech Report</option>
       <option value="unpublished" {% if citation.citation_type == "unpublished" %}selected{% endif %}>Unpublished</option>
     </select>
-    <label for="author">Author: <input type="text" name="author" value="{{ citation.author or '' }}" /></label>
     <label for="title">Title: <input type="text" name="title" value="{{ citation.title or '' }}" /></label>
+    <label for="author">Author: <input type="text" name="author" value="{{ citation.author or '' }}" /></label>
     <label for="publisher"
       >Publisher: <input type="text" name="publisher" value="{{ citation.publisher or '' }}"
     /></label>
@@ -31,8 +31,8 @@ block page_title %} Edit citation {% endblock %} {% block body %}
     <label for="doi"> DOI: <input id="doi" type="text" name="doi" value="{{ citation.doi or '' }}" /> </label>
 
     <div class="form-buttons">
-      <button id="update_citation_button" class="primary" type="submit">
-        Update
+      <button id="edit_citation_button" class="primary" type="submit">
+        Edit
       </button>
       <a href="/citations/{{ citation.citation_id }}">
         <button type="button" class="secondary">Cancel</button>

@@ -24,7 +24,7 @@ Second citation can be added
 
 Citation requires Citation Type
     Go To  ${HOME_URL}
-    Click Link  Create new citation
+    Click Link  New citation
     Input Text  author  Martin Fowler
     Input Text  title  Refactoring: Improving the Design of Existing Code
     Input Text  publisher  Addison-Wesley
@@ -35,7 +35,7 @@ Citation requires Citation Type
 
 Citation requires Author
     Go To  ${HOME_URL}
-    Click Link  Create new citation
+    Click Link  New citation
     Select From List By Value  citation_type  book
     Input Text  title  Refactoring: Improving the Design of Existing Code
     Input Text  publisher  Addison-Wesley

@@ -32,7 +32,7 @@ Reset Citations
 Add Citation
     [Arguments]  ${citation_type}  ${author}  ${title}  ${publisher}  ${year}  ${doi}
     Go To  ${HOME_URL}
-    Click Link  Create new citation
+    Click Link  New citation
     Select From List By Value  citation_type  ${citation_type}
     Input Text  author      ${author}
     Input Text  title       ${title}
