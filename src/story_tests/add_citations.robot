@@ -60,3 +60,12 @@ Citation can be added with doi link
     Textfield Value Should Be  doi  10.1145/2380552.2380613
     Click Button  Add
     Check page contains citation  Matti Luukkainen  Three years of design-based research to reform a software engineering curriculum  ACM  2012
+
+Citation with invalid DOI should show error message
+    Go To  ${HOME_URL}
+    Click Link  New citation
+    Input Text  doi-fetch  https://doi.org/10.1145/invalid
+    Execute JavaScript  document.getElementById('doi-fetch').blur()
+    Wait Until Page Contains  DOI not found!
+    Sleep  1s
+    Page Should Contain  DOI not found!
