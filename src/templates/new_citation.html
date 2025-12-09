@@ -35,11 +35,11 @@ block page_title %} Add new citation {% endblock %} {% block body %}
       <option value="techreport" {% if citation_type == "techreport" %}selected{% endif %}>Tech Report</option>
       <option value="unpublished" {% if citation_type == "unpublished" %}selected{% endif %}>Unpublished</option>
     </select>
-    <label for="author"
-      >Author: <input id="author" type="text" name="author" value="{{ author or '' }}"
-    /></label>
     <label for="title"
       >Title: <input id="title" type="text" name="title" value="{{ title or '' }}"
+    /></label>
+    <label for="author"
+      >Author: <input id="author" type="text" name="author" value="{{ author or '' }}"
     /></label>
     <label for="publisher"
       >Publisher: <input id="publisher" type="text" name="publisher" value="{{ publisher or '' }}"

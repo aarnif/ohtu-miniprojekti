@@ -22,8 +22,8 @@ block page_title %} Edit citation {% endblock %} {% block body %}
       <option value="techreport" {% if citation.citation_type == "techreport" %}selected{% endif %}>Tech Report</option>
       <option value="unpublished" {% if citation.citation_type == "unpublished" %}selected{% endif %}>Unpublished</option>
     </select>
-    <label for="author">Author: <input type="text" name="author" value="{{ citation.author or '' }}" /></label>
     <label for="title">Title: <input type="text" name="title" value="{{ citation.title or '' }}" /></label>
+    <label for="author">Author: <input type="text" name="author" value="{{ citation.author or '' }}" /></label>
     <label for="publisher"
       >Publisher: <input type="text" name="publisher" value="{{ citation.publisher or '' }}"
     /></label>
