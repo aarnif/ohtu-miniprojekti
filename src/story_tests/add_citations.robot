@@ -21,3 +21,14 @@ Second citation can be added
 
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
+
+Citation with no Citation type cannot be added
+    Go To  ${HOME_URL}
+    Click Link  Create new citation
+    Input Text  author  Martin Fowler
+    Input Text  title  Refactoring: Improving the Design of Existing Code
+    Input Text  publisher  Addison-Wesley
+    Input Text  year  1999
+    Input Text  doi  10.1145/2380552.2380613
+    Click Button  Add
+    Page Should Contain  Citation type is required
