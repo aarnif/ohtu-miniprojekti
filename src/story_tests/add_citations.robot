@@ -43,3 +43,20 @@ Citation requires Author
     Input Text  doi  10.1145/2380552.2380613
     Click Button  Add
     Page Should Contain  Author length must be between 3 and 100
+
+Citation can be added with doi link
+    Go To  ${HOME_URL}
+    Click Link  New citation
+    Input Text  doi-fetch  https://doi.org/10.1145/2380552.2380613
+    Execute JavaScript  document.getElementById('doi-fetch').blur()
+    Wait Until Page Contains  ✓ Citation loaded from DOI!
+    Sleep  1s
+    ${selected}=  Get Selected List Value  citation_type
+    Should Be Equal  ${selected}  proceedings
+    Textfield Value Should Be  author  Matti Luukkainen, Arto Vihavainen, Thomas Vikberg
+    Textfield Value Should Be  title  Three years of design-based research to reform a software engineering curriculum
+    Textfield Value Should Be  publisher  ACM
+    Textfield Value Should Be  year  2012
+    Textfield Value Should Be  doi  10.1145/2380552.2380613
+    Click Button  Add
+    Check page contains citation  Matti Luukkainen  Three years of design-based research to reform a software engineering curriculum  ACM  2012
