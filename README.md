@@ -49,7 +49,7 @@ poetry run invoke start
 
 Sovelluksen yksikkötestit:
 ```
-poetry run invoke test-unit
+coverage run --branch -m pytest
 ```
 ```
 coverage report
