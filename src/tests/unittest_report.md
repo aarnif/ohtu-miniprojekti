@@ -15,4 +15,4 @@ Yksikkötestit testaavat syötteet viiteiden tietokantaan. Yksikkötestit tarkis
 
 Projektin testikattavuus on keskimäärin yli 70%, joista kaikki sovelluslogiikkaan liittyviä ohjelmia testataan perusteellisesti yli 90 prosentin testikattavuudella
 
-![testikattavuudesta kuvakaappaus](image.png)
+![testikattavuudesta kuvakaappaus](code-coverage.png)
