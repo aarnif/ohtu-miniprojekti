@@ -102,8 +102,8 @@ def delete(citation_id):
     return redirect("/")
 
 
-@app.route("/citations/<citation_id>/update", methods=["GET", "POST"])
-def update_citation(citation_id):
+@app.route("/citations/<citation_id>/edit", methods=["GET", "POST"])
+def edit_citation_route(citation_id):
     if request.method == "GET":
         citation = get_citation_by_id(citation_id)
         if not citation:
