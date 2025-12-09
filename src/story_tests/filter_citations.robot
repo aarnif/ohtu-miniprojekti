@@ -14,7 +14,6 @@ Search with non-matching query should return no citations
     Sleep  1s
     Page Should Contain  No citations.
 
-
 Search with matching query should return citation
     Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
     Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
@@ -42,3 +41,17 @@ Search with matching doi should return citation
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Page Should Not Contain  Clean Code: A Handbook of Agile Software Craftsmanship
     Page Should Not Contain  Domain-Driven Design
+
+Filter by citation type book should return book citations
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
+    Add citation  article  Susan L. Graham  Code Generation and Optimization  ACM Computing Surveys  2015  10.1145/2854838
+    Add citation  inproceedings  Linus Torvalds  Linux Kernel Development  Proceedings of the Linux Symposium  2005  10.5281/2555028
+    Add citation  phdthesis  Jane Smith  Advanced Software Architecture Patterns  University of Technology  2021  10.5281/4567890
+    Select From List By Value  citation_type  book
+    Execute JavaScript  document.getElementById('citation_type').dispatchEvent(new Event('input', { bubbles: true }))
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
+    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
+    Page Should Not Contain  Code Generation and Optimization
+    Page Should Not Contain  Linux Kernel Development
+    Page Should Not Contain  Advanced Software Architecture Patterns
