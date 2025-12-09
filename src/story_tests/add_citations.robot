@@ -43,3 +43,14 @@ Citation requires Author
     Input Text  doi  10.1145/2380552.2380613
     Click Button  Add
     Page Should Contain  Author length must be between 3 and 100
+
+Citation requires Title
+    Go To  ${HOME_URL}
+    Click Link  Create new citation
+    Select From List By Value  citation_type  book
+    Input Text  author  Martin Fowler
+    Input Text  publisher  Addison-Wesley
+    Input Text  year  1999
+    Input Text  doi  10.1145/2380552.2380613
+    Click Button  Add
+    Page Should Contain  Title length must be between 3 and 100
