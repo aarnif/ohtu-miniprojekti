@@ -51,7 +51,9 @@ Sovelluksen yksikkötestit:
 ```
 poetry run invoke test-unit
 ```
-
+```
+coverage report
+```
 Sovelluksen järjestelmätestit:
 ```
 poetry run invoke test-e2e
