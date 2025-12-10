@@ -72,6 +72,7 @@ h5 {
 }
 
 .wrapper {
+  margin-bottom: 16x;
   flex-grow: 1;
   max-width: 1000px;
   display: flex;
