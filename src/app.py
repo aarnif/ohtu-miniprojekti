@@ -109,8 +109,9 @@ def download_bibtex_file():
     try:
         query = request.args.get("query", "")
         sort = request.args.get('sort', "")
-        citation_type = request.args.get('citation_type', "")
-        citations = get_citations(query, sort, citation_type)
+        citation_type = request.args.get('citation_type', '')
+        tags = request.args.getlist('tags')
+        citations = get_citations(query, sort, citation_type, tags)
         bibtex_content = create_bibtex(citations)
         return Response(
             bibtex_content,
