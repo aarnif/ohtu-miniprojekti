@@ -62,15 +62,16 @@ def get_citations(query, sort, citation_type, tags=None):
 def create_citation(title, author, publisher, year, citation_type="book", doi=None):
     sql = text(
         "INSERT INTO citations (title, author, publisher, year, citation_type, doi) "
-        "VALUES (:title, :author, :publisher, :year, :citation_type, :doi)")
-    db.session.execute(
-        sql, {"title": title,
-              "author": author,
+        "VALUES (:title, :author, :publisher, :year, :citation_type, :doi) RETURNING id")
+    result = db.session.execute(
+        sql, {"author": author,
+              "title": title,
               "publisher": publisher,
               "year": year,
               "citation_type": citation_type,
               "doi": doi})
     db.session.commit()
+    return result.fetchone()
 
 
 def delete_citation(citation_id):
