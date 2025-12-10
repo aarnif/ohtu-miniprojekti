@@ -8,7 +8,7 @@ from repositories.citation_repository import (
     get_citation_by_id,
     check_if_citation_exists
 )
-from repositories.tag_repository import get_all_tags
+from repositories.tag_repository import get_all_tags, add_tag_to_citation
 
 from config import app, test_env
 from util import validate_citation, UserInputError
@@ -25,8 +25,6 @@ def index():
     all_tags = get_all_tags()
     selected_tags = []
 
-    print("all tags", all_tags)
-
     if tags:
         selected_tags = tags[:]
 
@@ -41,21 +39,32 @@ def index():
 
 
 @app.route("/new_citation")
-def new_citation():
-    return render_template("new_citation.html")
+def new():
+    all_tags = get_all_tags()
+    return render_template("new_citation.html",
+                           citation_type="",
+                           author="",
+                           title="",
+                           publisher="",
+                           year="",
+                           doi="",
+                           all_tags=all_tags,
+                           selected_tags=[])
 
 
 @app.route("/create_citation", methods=["POST"])
-def citation_creation():
-    citation_type = request.form.get("citation_type")
+def citation_adding():
     author = request.form.get("author")
     title = request.form.get("title")
     publisher = request.form.get("publisher")
     year = request.form.get("year")
+    citation_type = request.form.get("citation_type", "book")
     doi = request.form.get("doi")
+    tags = request.form.getlist("tags")
 
     if check_if_citation_exists(title, doi):
         flash("Citation already exists!", "error")
+        all_tags = get_all_tags()
         return render_template(
             "new_citation.html",
             citation_type=citation_type,
@@ -63,26 +72,28 @@ def citation_creation():
             title=title,
             publisher=publisher,
             year=year,
-            doi=doi
+            doi=doi,
+            all_tags=all_tags,
+            selected_tags=tags
         )
 
     try:
         validate_citation(title, author, publisher, year, citation_type)
-        create_citation(title, author, publisher, year, citation_type, doi)
-        flash("Citation created successfully!", "success")
-        return redirect("/")
+        citation = create_citation(
+            title, author, publisher, year, citation_type, doi)
 
+        citation_id = citation[0]
+
+        for tag in tags:
+            if tag.strip():
+                add_tag_to_citation(citation_id, tag.strip())
+
+        flash("Citation added successfully!", "success")
+        return redirect("/")
     except UserInputError as error:
-        flash(str(error))
-        return render_template(
-            "new_citation.html",
-            citation_type=citation_type,
-            author=author,
-            title=title,
-            publisher=publisher,
-            year=year,
-            doi=doi
-        )
+        flash(str(error), "error")
+        all_tags = get_all_tags()
+        return render_template("new_citation.html", citation=citation, all_tags=all_tags, selected_tags=tags)
 
 
 @app.route("/download_bibtex_file")
