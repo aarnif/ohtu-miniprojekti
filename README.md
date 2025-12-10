@@ -18,6 +18,10 @@ Koodin siisteys: Pylint menee läpi ilman virheitä ja koodi on muotoiltu autope
 
 https://ohtu-miniprojekti.onrender.com/
 
+## Sovelluksen yksikkötestien raportti
+
+https://github.com/aarnif/ohtu-miniprojekti/blob/main/src/tests/unittest_report.md
+
 ## Sovelluksen asennusohjeet
 
 Kloonaa repositorio:
@@ -49,7 +53,7 @@ poetry run invoke start
 
 Sovelluksen yksikkötestit:
 ```
-poetry run invoke test-unit
+coverage run --branch -m pytest
 ```
 ```
 coverage report
