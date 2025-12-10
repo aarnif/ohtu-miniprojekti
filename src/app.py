@@ -17,126 +17,155 @@ from entities.citation import Citation
 
 @app.route("/")
 def index():
-    query = request.args.get("query", "")
-    sort = request.args.get('sort', "")
-    citation_type = request.args.get('citation_type', "")
-    citations = get_citations(query, sort, citation_type)
-    return render_template("index.html", citations=citations, query=query, sort=sort, citation_type=citation_type)
+    try:
+        query = request.args.get("query", "")
+        sort = request.args.get('sort', "")
+        citation_type = request.args.get('citation_type', "")
+        citations = get_citations(query, sort, citation_type)
+        return render_template("index.html", citations=citations, query=query, sort=sort, citation_type=citation_type)
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/new_citation")
 def new_citation():
-    return render_template("new_citation.html")
+    try:
+        return render_template("new_citation.html")
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/create_citation", methods=["POST"])
 def citation_creation():
-    citation_type = request.form.get("citation_type")
-    author = request.form.get("author")
-    title = request.form.get("title")
-    publisher = request.form.get("publisher")
-    year = request.form.get("year")
-    doi = request.form.get("doi")
-
-    if check_if_citation_exists(title, doi):
-        flash("Citation already exists!", "error")
-        return render_template(
-            "new_citation.html",
-            citation_type=citation_type,
-            author=author,
-            title=title,
-            publisher=publisher,
-            year=year,
-            doi=doi
-        )
-
     try:
-        validate_citation(title, author, publisher, year, citation_type)
-        create_citation(title, author, publisher, year, citation_type, doi)
-        flash("Citation created successfully!", "success")
-        return redirect("/")
+        citation_type = request.form.get("citation_type")
+        author = request.form.get("author")
+        title = request.form.get("title")
+        publisher = request.form.get("publisher")
+        year = request.form.get("year")
+        doi = request.form.get("doi")
 
-    except UserInputError as error:
-        flash(str(error))
-        return render_template(
-            "new_citation.html",
-            citation_type=citation_type,
-            author=author,
-            title=title,
-            publisher=publisher,
-            year=year,
-            doi=doi
-        )
+        if check_if_citation_exists(title, doi):
+            flash("Citation already exists!", "error")
+            return render_template(
+                "new_citation.html",
+                citation_type=citation_type,
+                author=author,
+                title=title,
+                publisher=publisher,
+                year=year,
+                doi=doi
+            )
+
+        try:
+            validate_citation(title, author, publisher, year, citation_type)
+            create_citation(title, author, publisher, year, citation_type, doi)
+            flash("Citation created successfully!", "success")
+            return redirect("/")
+
+        except UserInputError as error:
+            flash(str(error))
+            return render_template(
+                "new_citation.html",
+                citation_type=citation_type,
+                author=author,
+                title=title,
+                publisher=publisher,
+                year=year,
+                doi=doi
+            )
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/download_bibtex_file")
 def download_bibtex_file():
-    query = request.args.get("query", "")
-    sort = request.args.get('sort', "")
-    citation_type = request.args.get('citation_type', "")
-    citations = get_citations(query, sort, citation_type)
-    bibtex_content = create_bibtex(citations)
-    return Response(
-        bibtex_content,
-        headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
-    )
+    try:
+        query = request.args.get("query", "")
+        sort = request.args.get('sort', "")
+        citation_type = request.args.get('citation_type', "")
+        citations = get_citations(query, sort, citation_type)
+        bibtex_content = create_bibtex(citations)
+        return Response(
+            bibtex_content,
+            headers={
+                "Content-Disposition": "attachment;filename=exported_citations.bib"}
+        )
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/citations/<citation_id>")
 def citation_view(citation_id):
     try:
-        citation_id_int = int(citation_id)
-    except (ValueError, TypeError):
-        return render_template("citation_not_found.html"), 404
+        try:
+            citation_id_int = int(citation_id)
+        except (ValueError, TypeError):
+            return render_template("citation_not_found.html"), 404
 
-    citation = get_citation_by_id(citation_id_int)
-    if not citation:
-        return render_template("citation_not_found.html"), 404
-    return render_template("citation.html", citation=citation)
+        citation = get_citation_by_id(citation_id_int)
+        if not citation:
+            return render_template("citation_not_found.html"), 404
+        return render_template("citation.html", citation=citation)
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/citations/<citation_id>/delete", methods=["POST"])
 def delete(citation_id):
-    delete_citation(citation_id)
-    flash("Citation deleted successfully!", "success")
-    return redirect("/")
+    try:
+        delete_citation(citation_id)
+        flash("Citation deleted successfully!", "success")
+        return redirect("/")
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/citations/<citation_id>/edit", methods=["GET", "POST"])
 def edit_citation_route(citation_id):
-    if request.method == "GET":
-        citation = get_citation_by_id(citation_id)
-        if not citation:
-            flash("Citation not found", "error")
-            return redirect("/")
-        return render_template("edit_citation.html", citation=citation)
-
-    citation_type = request.form.get("citation_type")
-    author = request.form.get("author")
-    title = request.form.get("title")
-    publisher = request.form.get("publisher")
-    year = request.form.get("year")
-    doi = request.form.get("doi")
-
     try:
-        validate_citation(title, author, publisher, year, citation_type)
-        edit_citation(citation_id, title, author,
-                      publisher, year, citation_type, doi)
-        flash("Citation edited successfully!", "success")
-        return redirect(f"/citations/{citation_id}")
+        if request.method == "GET":
+            citation = get_citation_by_id(citation_id)
+            if not citation:
+                flash("Citation not found", "error")
+                return redirect("/")
+            return render_template("edit_citation.html", citation=citation)
 
-    except UserInputError as error:
-        flash(str(error))
-        citation_with_user_input = Citation(
-            citation_id=citation_id,
-            title=title,
-            author=author,
-            publisher=publisher,
-            year=year,
-            citation_type=citation_type,
-            doi=doi
-        )
-        return render_template("edit_citation.html", citation=citation_with_user_input)
+        citation_type = request.form.get("citation_type")
+        author = request.form.get("author")
+        title = request.form.get("title")
+        publisher = request.form.get("publisher")
+        year = request.form.get("year")
+        doi = request.form.get("doi")
+
+        try:
+            validate_citation(title, author, publisher, year, citation_type)
+            edit_citation(citation_id, title, author,
+                          publisher, year, citation_type, doi)
+            flash("Citation edited successfully!", "success")
+            return redirect(f"/citations/{citation_id}")
+
+        except UserInputError as error:
+            flash(str(error))
+            citation_with_user_input = Citation(
+                citation_id=citation_id,
+                title=title,
+                author=author,
+                publisher=publisher,
+                year=year,
+                citation_type=citation_type,
+                doi=doi
+            )
+            return render_template("edit_citation.html", citation=citation_with_user_input)
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 # testausta varten oleva reitti
