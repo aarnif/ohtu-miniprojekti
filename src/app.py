@@ -98,35 +98,48 @@ def citation_adding():
 
 @app.route("/download_bibtex_file")
 def download_bibtex_file():
-    query = request.args.get("query", "")
-    sort = request.args.get('sort', "")
-    citation_type = request.args.get('citation_type', "")
-    citations = get_citations(query, sort, citation_type)
-    bibtex_content = create_bibtex(citations)
-    return Response(
-        bibtex_content,
-        headers={"Content-Disposition": "attachment;filename=exported_citations.bib"}
-    )
+    try:
+        query = request.args.get("query", "")
+        sort = request.args.get('sort', "")
+        citation_type = request.args.get('citation_type', "")
+        citations = get_citations(query, sort, citation_type)
+        bibtex_content = create_bibtex(citations)
+        return Response(
+            bibtex_content,
+            headers={
+                "Content-Disposition": "attachment;filename=exported_citations.bib"}
+        )
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/citations/<citation_id>")
 def citation_view(citation_id):
     try:
-        citation_id_int = int(citation_id)
-    except (ValueError, TypeError):
-        return render_template("citation_not_found.html"), 404
+        try:
+            citation_id_int = int(citation_id)
+        except (ValueError, TypeError):
+            return render_template("citation_not_found.html"), 404
 
-    citation = get_citation_by_id(citation_id_int)
-    if not citation:
-        return render_template("citation_not_found.html"), 404
-    return render_template("citation.html", citation=citation)
+        citation = get_citation_by_id(citation_id_int)
+        if not citation:
+            return render_template("citation_not_found.html"), 404
+        return render_template("citation.html", citation=citation)
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/citations/<citation_id>/delete", methods=["POST"])
 def delete(citation_id):
-    delete_citation(citation_id)
-    flash("Citation deleted successfully!", "success")
-    return redirect("/")
+    try:
+        delete_citation(citation_id)
+        flash("Citation deleted successfully!", "success")
+        return redirect("/")
+    except Exception:  # pylint: disable=broad-except
+        flash("Something went wrong, please try again", "error")
+        return redirect("/")
 
 
 @app.route("/citations/<int:citation_id>/edit", methods=["GET", "POST"])
