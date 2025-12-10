@@ -468,6 +468,10 @@ label {
   justify-content: end;
 }
 
+#citation-page-tags {
+  justify-content: start;
+}
+
 .tag {
   padding: 4px 12px;
   background-color: var(--tag-bg);

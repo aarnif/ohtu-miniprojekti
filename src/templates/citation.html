@@ -15,6 +15,12 @@ page_title %} Citation {% endblock %} {% block body %}
         >https://doi.org/{{ citation.doi }}</a
       >
     </p>
+    {% endif %} {% if citation.tags %}
+    <div id="citation-page-tags" class="citation-tags">
+      {% for tag in citation.tags %}
+      <span class="tag">{{ tag.name }}</span>
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
   <div class="citation-options">

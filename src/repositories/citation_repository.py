@@ -95,8 +95,8 @@ def get_citation_by_id(citation_id):
     result = db.session.execute(sql, {"citation_id": citation_id})
     citation = result.fetchone()
     if citation:
-        return Citation(citation[0], citation[1], citation[2], citation[3],
-                        citation[4], citation[5], citation[6])
+        tags = get_citation_tags(citation_id)
+        return Citation(citation[0], citation[1], citation[2], citation[3], citation[4], citation[5], citation[6], tags)
     return None
 
 
