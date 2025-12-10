@@ -47,3 +47,7 @@ Check page contains citation
     Page Should Contain  ${title}
     Page Should Contain  ${publisher}
     Page Should Contain  ${year}
+
+Dismiss notification
+    Wait Until Element Is Visible  id=close-notification-icon
+    Click Element  id=close-notification-icon
