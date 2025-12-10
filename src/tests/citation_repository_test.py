@@ -39,7 +39,7 @@ class TestCitationRepository(unittest.TestCase):
         self.assertTrue(len(citations) > 0)
 
         for c in citations:
-            self.assertIn("code", c.title.lower())
+            self.assertIn("optimization", c.title.lower())
 
     def test_citation_is_successfully_created(self):
         before = len(cit_repo.get_citations("", "", ""))
@@ -68,7 +68,7 @@ class TestCitationRepository(unittest.TestCase):
         citation = citations[-1]
         citation_id = citation.citation_id
 
-        cit_repo.edit_citation("Basic Mathematics", "Serge Lang", "Springer", "1988", "book", "10.1000/879")
+        cit_repo.edit_citation(citation_id, "Basic Mathematics", "Serge Lang", "Springer", "1988", "book", "10.1000/879")
         updated = cit_repo.get_citation_by_id(citation_id)
 
         self.assertEqual(updated.title, "Basic Mathematics")
