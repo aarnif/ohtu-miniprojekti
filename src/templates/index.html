@@ -47,6 +47,12 @@ block body %}
       <option value="publisher" {% if sort == 'publisher' %}selected{% endif %}>Publisher</option>
       <option value="year" {% if sort == 'year' %}selected{% endif %}>Year</option>
     </select>
+
+    {% for tag in all_tags %}
+      {% if tag.name in selected_tags %}
+      <input type="hidden" name="tags" value="{{ tag.name }}" />
+      {% endif %}
+    {% endfor %}
   </form>
 
  <a href="/new_citation"><button class="primary">New citation</button></a>
