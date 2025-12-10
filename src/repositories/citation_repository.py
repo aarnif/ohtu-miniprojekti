@@ -2,14 +2,29 @@ from datetime import datetime
 from sqlalchemy import text
 from config import db
 from entities.citation import Citation
+from repositories.tag_repository import get_citation_tags
 
 
-def get_citations(query, sort, citation_type):
+def get_citations(query, sort, citation_type, tags=None):
     if not sort:
         sort = "title"
 
-    sql_query = "SELECT id, title, author, publisher, year, citation_type, doi FROM citations WHERE 1=1 "
     params = {}
+
+    if tags:
+        tag_placeholders = ", ".join([f":tag_{i}" for i in range(len(tags))])
+
+        for i, tag in enumerate(tags):
+            params[f"tag_{i}"] = tag
+
+        sql_query = (f"SELECT DISTINCT c.id, c.title, c.author, c.publisher,"
+                     "c.year, c.citation_type, c.doi FROM citations c "
+                     "INNER JOIN citation_tags ct ON c.id = ct.citation_id "
+                     "INNER JOIN tags t ON ct.tag_id = t.id "
+                     f"WHERE t.name IN ({tag_placeholders}) ")
+    else:
+        sql_query = "SELECT c.id, c.title, c.author, c.publisher, " \
+            "c.year, c.citation_type, c.doi FROM citations c WHERE 1=1 "
 
     if query:
         if query.startswith("https://doi.org/"):
@@ -32,7 +47,7 @@ def get_citations(query, sort, citation_type):
             sql_query += ")"
 
     if citation_type:
-        sql_query += " AND citation_type = :citation_type"
+        sql_query += "AND citation_type = :citation_type"
         params["citation_type"] = citation_type
 
     sql_query += f" ORDER BY {sort}"
@@ -41,7 +56,7 @@ def get_citations(query, sort, citation_type):
     citations = result.fetchall()
 
     return [Citation(citation[0], citation[1], citation[2], citation[3],
-                     citation[4], citation[5], citation[6]) for citation in citations]
+                     citation[4], citation[5], citation[6], get_citation_tags(citation[0])) for citation in citations]
 
 
 def create_citation(title, author, publisher, year, citation_type="book", doi=None):
