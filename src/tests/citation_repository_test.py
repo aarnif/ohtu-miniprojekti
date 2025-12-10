@@ -26,7 +26,7 @@ class TestCitationRepository(unittest.TestCase):
         self.assertIsNotNone(citation)
 
     def test_citations_are_recieved_with_doi_or_year(self):
-        cit_repo.create_citation("Boom Kah", "Robin", "Universal", "2013", "article", "10.1000/183")
+        cit_repo.create_citation("Das Kapital", "Karl Marx", "Otto Meissner", "1867", "book", "10.1000/183")
         citation_by_doi = cit_repo.get_citations("https://doi.org/10.1000/183", "", "")
         self.assertIsNotNone(citation_by_doi)
 
@@ -34,22 +34,22 @@ class TestCitationRepository(unittest.TestCase):
         self.assertIsNotNone(citations_by_year)
 
     def test_citations_searched_with_query_and_sort(self):
-        cit_repo.create_citation("The Beauty of Code", "Tdot", "Universal", "2022", "book", "10.1000/782")
-        citations = cit_repo.get_citations("code", "title", "book")
+        cit_repo.create_citation("An introduction to continuous optimization: Foundations and Fundamental Algorithms", "Niclas Andréasson", "Studentliteratur", "2018", "book", "10.1000/782")
+        citations = cit_repo.get_citations("optimization", "title", "book")
         self.assertTrue(len(citations) > 0)
 
         for c in citations:
-            self.assertIn("code", c.title.lower())
+            self.assertIn("optimization", c.title.lower())
 
     def test_citation_is_successfully_created(self):
         before = len(cit_repo.get_citations("", "", ""))
-        cit_repo.create_citation("All Night Long", "Marvin Gaye", "Tammi", "1998", "article", "10.1000/182")
+        cit_repo.create_citation("Docs for Developers: An Engineer's Field Guide to Technical Writing", "Jared Bhatti", "Apress", "2021", "book", "10.1000/182")
         after = len(cit_repo.get_citations("", "", ""))
         self.assertEqual(before + 1, after)
 
     def test_citation_is_successfully_deleted(self):
 
-        cit_repo.create_citation("Norwegian Wood", "Haruki Murakami", "Tammi", "1987", "book", "10.1000/186")
+        cit_repo.create_citation("Reinforcement Learning Algorithms with Python", "Andrea Lonza", "Packt", "2019", "book", "10.1000/186")
         citations_before = cit_repo.get_citations("", "", "")
         last_citation = citations_before[-1]
         citation_id = last_citation.citation_id
@@ -62,18 +62,18 @@ class TestCitationRepository(unittest.TestCase):
         self.assertNotIn(citation_id, ids_after)
 
     def test_citation_is_successfully_edited(self):
-        cit_repo.create_citation("Charlie And The Chocolate Factory", "Roald Dahl", "Scholastic", "1964", "book", "10.1000/999")
+        cit_repo.create_citation("Basic Mathematics", "Serge Lang", "Springer", "1988", "book", "10.1000/999")
 
         citations = cit_repo.get_citations("", "", "")
         citation = citations[-1]
         citation_id = citation.citation_id
 
-        cit_repo.edit_citation(citation_id, "Charlie And The Chocolate Factory", "Roald Dahl", "Pearson", "1964", "book", "10.1000/879")
+        cit_repo.edit_citation(citation_id, "Basic Mathematics", "Serge Lang", "Springer", "1988", "book", "10.1000/879")
         updated = cit_repo.get_citation_by_id(citation_id)
 
-        self.assertEqual(updated.title, "Charlie And The Chocolate Factory")
+        self.assertEqual(updated.title, "Basic Mathematics")
         self.assertEqual(updated.doi, "10.1000/879")
-        self.assertEqual(updated.publisher, "Pearson")
+        self.assertEqual(updated.publisher, "Springer")
 
     def test_citation_can_be_checked(self):
         cit_repo.create_citation("The Great Gatsby", "Scott Fitzgerald", "Scholastic", "154", "book", "10.1000/188")
