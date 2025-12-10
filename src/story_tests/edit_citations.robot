@@ -62,3 +62,5 @@ Confirmation notification is not visible after dismissing
     Dismiss notification
     Sleep  1s
     Element Should Not Be Visible  close-notification-icon
+    Go To  ${HOME_URL}
+    Element Should Not Be Visible  close-notification-icon
