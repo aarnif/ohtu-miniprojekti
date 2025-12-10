@@ -216,3 +216,95 @@ CITATIONS = [
         "doi": "10.5281/4567234"
     }
 ]
+
+TAGS = [
+    {"name": "design"},
+    {"name": "programming"},
+    {"name": "testing"},
+    {"name": "architecture"},
+    {"name": "agile"},
+    {"name": "refactoring"},
+    {"name": "code-quality"},
+    {"name": "best-practices"},
+    {"name": "web"},
+    {"name": "algorithms"},
+    {"name": "database"},
+    {"name": "performance"},
+]
+
+CITATION_TAGS = [
+    # Refactoring
+    {"citation_id": 1, "tag_id": 2},  # programming
+    {"citation_id": 1, "tag_id": 6},  # refactoring
+    {"citation_id": 1, "tag_id": 7},  # code-quality
+    # Clean Code
+    {"citation_id": 2, "tag_id": 2},  # programming
+    {"citation_id": 2, "tag_id": 7},  # code-quality
+    {"citation_id": 2, "tag_id": 8},  # best-practices
+    # Domain-Driven Design
+    {"citation_id": 3, "tag_id": 1},  # design
+    {"citation_id": 3, "tag_id": 4},  # architecture
+    # Pragmatic Programmer
+    {"citation_id": 4, "tag_id": 2},  # programming
+    {"citation_id": 4, "tag_id": 8},  # best-practices
+    # Test Driven Development
+    {"citation_id": 5, "tag_id": 3},  # testing
+    {"citation_id": 5, "tag_id": 2},  # programming
+    # Design Patterns
+    {"citation_id": 6, "tag_id": 1},  # design
+    {"citation_id": 6, "tag_id": 4},  # architecture
+    # Pragmatic Programmer (2019)
+    {"citation_id": 7, "tag_id": 2},  # programming
+    {"citation_id": 7, "tag_id": 8},  # best-practices
+    # Code Complete
+    {"citation_id": 8, "tag_id": 2},  # programming
+    {"citation_id": 8, "tag_id": 7},  # code-quality
+    # Working with Legacy Code
+    {"citation_id": 9, "tag_id": 2},  # programming
+    {"citation_id": 9, "tag_id": 6},  # refactoring
+    # Effective Java
+    {"citation_id": 10, "tag_id": 2},  # programming
+    {"citation_id": 10, "tag_id": 8},  # best-practices
+    # Thinking in Java
+    {"citation_id": 11, "tag_id": 2},  # programming
+    # C# Player's Guide
+    {"citation_id": 12, "tag_id": 2},  # programming
+    # Pragmatic Programmer (1999)
+    {"citation_id": 13, "tag_id": 2},  # programming
+    {"citation_id": 13, "tag_id": 8},  # best-practices
+    # C++ Programming Language
+    {"citation_id": 14, "tag_id": 2},  # programming
+    # Python Tutorial
+    {"citation_id": 15, "tag_id": 2},  # programming
+    # JavaScript: The Good Parts
+    {"citation_id": 16, "tag_id": 2},  # programming
+    {"citation_id": 16, "tag_id": 9},  # web
+    # Fluent Python
+    {"citation_id": 17, "tag_id": 2},  # programming
+    {"citation_id": 17, "tag_id": 8},  # best-practices
+    # Lean Software Development
+    {"citation_id": 18, "tag_id": 5},  # agile
+    # Peopleware
+    {"citation_id": 19, "tag_id": 5},  # agile
+    # Art of Computer Programming
+    {"citation_id": 20, "tag_id": 10},  # algorithms
+    # Code Generation and Optimization
+    {"citation_id": 21, "tag_id": 2},  # programming
+    {"citation_id": 21, "tag_id": 12},  # performance
+    # Linux Kernel Development
+    {"citation_id": 22, "tag_id": 2},  # programming
+    {"citation_id": 22, "tag_id": 4},  # architecture
+    # Compiling Routines
+    {"citation_id": 23, "tag_id": 2},  # programming
+    {"citation_id": 23, "tag_id": 10},  # algorithms
+    # On Computable Numbers
+    {"citation_id": 24, "tag_id": 10},  # algorithms
+    # Advanced Software Architecture Patterns
+    {"citation_id": 25, "tag_id": 1},  # design
+    {"citation_id": 25, "tag_id": 4},  # architecture
+    # Machine Learning in Production Systems
+    {"citation_id": 26, "tag_id": 2},  # programming
+    {"citation_id": 26, "tag_id": 12},  # performance
+    # HTML5 Specification
+    {"citation_id": 27, "tag_id": 9},  # web
+]
