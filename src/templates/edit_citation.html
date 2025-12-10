@@ -30,6 +30,25 @@ block page_title %} Edit citation {% endblock %} {% block body %}
     <label for="year">Year: <input type="text" name="year" value="{{ citation.year or '' }}" /></label>
     <label for="doi"> DOI: <input id="doi" type="text" name="doi" value="{{ citation.doi or '' }}" /> </label>
 
+
+    <div class="tags-section">
+      <label>Tags:</label>
+      <div id="tag-selection" class="tag-selection">
+        {% for tag in all_tags %}
+        <label class="tag-checkbox">
+          <input type="checkbox" name="tags" value="{{ tag.name }}" 
+            {% if tag.name in selected_tag_names %}checked{% endif %} />
+          <div>{{ tag.name }}</div>
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="new-tag-input">
+      <input id="new-tag" type="text" placeholder="Add new tag" />
+      <button id="new-tag-button" type="button" class="secondary">Add Tag</button>
+    </div>
+
     <div class="form-buttons">
       <button id="edit_citation_button" class="primary" type="submit">
         Edit
@@ -40,5 +59,42 @@ block page_title %} Edit citation {% endblock %} {% block body %}
     </div>
   </div>
 </form>
+
+<script>
+  const newTagInput = document.getElementById("new-tag");
+  const newTagButton = document.getElementById("new-tag-button");
+  const tagSelection = document.getElementById("tag-selection");
+
+  newTagButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newTag = newTagInput.value.trim();
+    
+    if (!newTag) return;
+
+    const existingTag = tagSelection.querySelector(`input[value="${newTag}"]`);
+
+    if (!existingTag) {
+      const label = document.createElement("label");
+      label.className = "tag-checkbox";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.name = "tags";
+      checkbox.value = newTag;
+      checkbox.checked = true;
+
+      const div = document.createElement("div");
+      div.textContent = newTag;
+
+      label.appendChild(checkbox);
+      label.appendChild(div);
+      tagSelection.appendChild(label);
+    } else {
+      existingTag.checked = true;
+    }
+
+    newTagInput.value = "";
+  });
+</script>
 
 {% endblock %}
