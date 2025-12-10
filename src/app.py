@@ -93,7 +93,15 @@ def citation_adding():
     except UserInputError as error:
         flash(str(error), "error")
         all_tags = get_all_tags()
-        return render_template("new_citation.html", citation=citation, all_tags=all_tags, selected_tags=tags)
+        return render_template("new_citation.html",
+                               citation_type=citation_type,
+                               author=author,
+                               title=title,
+                               publisher=publisher,
+                               year=year,
+                               doi=doi,
+                               all_tags=all_tags,
+                               selected_tags=tags)
 
 
 @app.route("/download_bibtex_file")
