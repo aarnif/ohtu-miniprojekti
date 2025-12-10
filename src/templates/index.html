@@ -86,9 +86,18 @@ block body %}
   {% for citation in citations %}
     <li class="citation-item">
       <a id="citation-item-link" href="/citations/{{ citation.citation_id }}">
+        <div class="citation-info">
         <div>
           <h3 class="citation-header">{{ citation.title }}</h3>
           <p class="citation-author">By {{ citation.author }}</p>
+        </div>
+        {% if citation.tags %}
+        <div class="citation-tags">
+          {% for tag in citation.tags %}
+          <span class="tag">{{ tag.name }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
         </div>
         <div class="citation-item-bottom">
           <p class="citation-publisher">Published By {{ citation.publisher }}</p>
