@@ -18,6 +18,10 @@ Koodin siisteys: Pylint menee läpi ilman virheitä ja koodi on muotoiltu autope
 
 https://ohtu-miniprojekti.onrender.com/
 
+## Sovelluksen yksikkötestien raportti
+
+https://github.com/aarnif/ohtu-miniprojekti/blob/main/src/tests/unittest_report.md
+
 ## Sovelluksen asennusohjeet
 
 Kloonaa repositorio:
