@@ -8,6 +8,7 @@ from repositories.citation_repository import (
     get_citation_by_id,
     check_if_citation_exists
 )
+from repositories.tag_repository import get_all_tags
 
 from config import app, test_env
 from util import validate_citation, UserInputError
@@ -17,11 +18,26 @@ from entities.citation import Citation
 
 @app.route("/")
 def index():
-    query = request.args.get("query", "")
-    sort = request.args.get('sort', "")
-    citation_type = request.args.get('citation_type', "")
-    citations = get_citations(query, sort, citation_type)
-    return render_template("index.html", citations=citations, query=query, sort=sort, citation_type=citation_type)
+    query = request.args.get('query', '')
+    sort = request.args.get('sort', '')
+    citation_type = request.args.get('citation_type', '')
+    tags = request.args.getlist('tags')
+    all_tags = get_all_tags()
+    selected_tags = []
+
+    print("all tags", all_tags)
+
+    if tags:
+        selected_tags = tags[:]
+
+    citations = get_citations(query, sort, citation_type, selected_tags)
+    return render_template("index.html",
+                           citations=citations,
+                           query=query,
+                           sort=sort,
+                           citation_type=citation_type,
+                           all_tags=all_tags,
+                           selected_tags=selected_tags)
 
 
 @app.route("/new_citation")

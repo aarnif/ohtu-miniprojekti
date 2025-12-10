@@ -236,6 +236,73 @@ button.secondary:hover {
   color: var(--button-primary-hover);
 }
 
+.tag-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.tag-filter {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 2px solid var(--border-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tag-filter:hover {
+  border-color: var(--border-hover);
+}
+
+.tag-filter.active {
+  background-color: var(--button-primary-bg);
+  color: white;
+  border-color: var(--button-primary-bg);
+}
+
+.tag-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tag-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.tag-checkbox div {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 2px solid var(--border-primary);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.tag-checkbox input[type="checkbox"]:checked + div {
+  background-color: var(--button-primary-bg);
+  color: white;
+  border-color: var(--button-primary-bg);
+}
+
+.tag-checkbox input[type="checkbox"]:hover + div {
+  border-color: var(--border-hover);
+}
+
+.tag-checkbox input[type="checkbox"]:focus + div {
+  box-shadow: var(--focus-shadow);
+}
+
 .form-buttons {
   display: flex;
   gap: 16px;

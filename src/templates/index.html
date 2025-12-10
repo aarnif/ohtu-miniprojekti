@@ -55,9 +55,29 @@ block body %}
     <input type="hidden" name="query" value="{{ query }}" />
     <input type="hidden" name="sort" value="{{ sort }}" />
     <input type="hidden" name="citation_type" value="{{ citation_type }}" />
+    {% for tag in all_tags %}
+      {% if tag.name in selected_tags %}
+      <input type="hidden" name="tags" value="{{ tag.name }}" />
+      {% endif %}
+    {% endfor %}
     <button type="submit" class="primary">Download BibTeX File</button>
   </form>
 </nav>
+
+<form id="tag-form">
+  <input type="hidden" name="query" value="{{ query }}" />
+  <input type="hidden" name="citation_type" value="{{ citation_type }}" />
+  <input type="hidden" name="sort" value="{{ sort }}" />
+  <div id="tag-filters" class="tag-filters">
+    {% for tag in all_tags %}
+      <label class="tag-checkbox">
+        <input type="checkbox" name="tags" value="{{ tag.name }}" 
+          {% if tag.name in selected_tags %}checked{% endif %} />
+        <div>{{ tag.name }}</div>
+      </label>
+    {% endfor %}
+  </div>
+</form>
 
 {% if citations|length == 0 %}
 <p>No citations.</p>
@@ -81,10 +101,12 @@ block body %}
 {% endif %}
 
 <script>
-  const form = document.getElementById("search-form");
+  const searchForm = document.getElementById("search-form");
   const search = document.getElementById("query");
   const sort = document.getElementById("sort");
   const citationType = document.getElementById("citation_type");
+  const tagForm = document.getElementById("tag-form");
+  const tagCheckBoxes = document.querySelectorAll(".tag-checkbox");
   let searchTimeout;
 
   search.focus();
@@ -93,17 +115,17 @@ block body %}
   search.addEventListener("input", () => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-      form.submit();
+      searchForm.submit();
     }, 500);
   });
 
-  sort.addEventListener("input", () =>
-    form.submit()
-  );
-
-  citationType.addEventListener("input", () =>
-    form.submit()
-  );
+  sort.addEventListener("change", () => searchForm.submit());
+  citationType.addEventListener("change", () => searchForm.submit());
+  tagCheckBoxes.forEach(checkBox => {
+    checkBox.addEventListener("change", () => {
+      tagForm.submit();
+    });
+  });
 </script>
 
 {% endblock %}
