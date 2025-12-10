@@ -55,6 +55,7 @@ Sovelluksen yksikkötestit:
 ```
 coverage run --branch -m pytest
 ```
+Sovelluksen testikattavuus:
 ```
 coverage report
 ```
