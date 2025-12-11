@@ -1,12 +1,16 @@
 import os
 from sqlalchemy import text
 from config import db, app
-from data import CITATIONS
+from data import CITATIONS, TAGS, CITATION_TAGS
 
 
 def reset_db():
-    print("Clearing contents from table citations")
+    print("Clearing contents from tables")
+    sql = text("DELETE FROM citation_tags")
+    db.session.execute(sql)
     sql = text("DELETE FROM citations")
+    db.session.execute(sql)
+    sql = text("DELETE FROM tags")
     db.session.execute(sql)
     db.session.commit()
 
@@ -19,9 +23,18 @@ def populate_db():
         "VALUES (:author, :title, :publisher, :year, :citation_type, :doi)"
     )
     db.session.execute(sql, CITATIONS)
-
     db.session.commit()
     print(f"Added {len(CITATIONS)} citations to the database")
+
+    sql = text("INSERT INTO tags (name) VALUES (:name)")
+    db.session.execute(sql, TAGS)
+    db.session.commit()
+
+    sql = text(
+        "INSERT INTO citation_tags (citation_id, tag_id) VALUES (:citation_id, :tag_id)")
+    db.session.execute(sql, CITATION_TAGS)
+    db.session.commit()
+    print(f"Added {len(CITATION_TAGS)} citation-tag associations")
 
 
 def tables():
@@ -58,9 +71,11 @@ def setup_db():
     tables_in_db = tables()
     if len(tables_in_db) > 0:
         print(f"Tables exist, dropping: {', '.join(tables_in_db)}")
-        for table in tables_in_db:
-            sql = text(f"DROP TABLE {table}")
-            db.session.execute(sql)
+        # Drop in correct order to respect foreign key constraints
+        for table in ["citation_tags", "citations", "tags"]:
+            if table in tables_in_db:
+                sql = text(f"DROP TABLE {table}")
+                db.session.execute(sql)
         db.session.commit()
 
     enums_in_db = enums()

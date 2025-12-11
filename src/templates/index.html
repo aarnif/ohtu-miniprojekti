@@ -47,12 +47,43 @@ block body %}
       <option value="publisher" {% if sort == 'publisher' %}selected{% endif %}>Publisher</option>
       <option value="year" {% if sort == 'year' %}selected{% endif %}>Year</option>
     </select>
+
+    {% for tag in all_tags %}
+      {% if tag.name in selected_tags %}
+      <input type="hidden" name="tags" value="{{ tag.name }}" />
+      {% endif %}
+    {% endfor %}
   </form>
 
  <a href="/new_citation"><button class="primary">New citation</button></a>
 
-  <button class="primary" onclick="location.href='/download_bibtex_file?query={{ query }}&sort={{ sort }}&citation_type={{ citation_type }}'">Download BibTeX File</button>
+  <form id="download-form" action="/download_bibtex_file">
+    <input type="hidden" name="query" value="{{ query }}" />
+    <input type="hidden" name="sort" value="{{ sort }}" />
+    <input type="hidden" name="citation_type" value="{{ citation_type }}" />
+    {% for tag in all_tags %}
+      {% if tag.name in selected_tags %}
+      <input type="hidden" name="tags" value="{{ tag.name }}" />
+      {% endif %}
+    {% endfor %}
+    <button type="submit" class="primary">Download BibTeX File</button>
+  </form>
 </nav>
+
+<form id="tag-form">
+  <input type="hidden" name="query" value="{{ query }}" />
+  <input type="hidden" name="citation_type" value="{{ citation_type }}" />
+  <input type="hidden" name="sort" value="{{ sort }}" />
+  <div id="tag-filters" class="tag-filters">
+    {% for tag in all_tags %}
+      <label class="tag-checkbox">
+        <input type="checkbox" name="tags" value="{{ tag.name }}" 
+          {% if tag.name in selected_tags %}checked{% endif %} />
+        <div>{{ tag.name }}</div>
+      </label>
+    {% endfor %}
+  </div>
+</form>
 
 {% if citations|length == 0 %}
 <p>No citations.</p>
@@ -61,9 +92,18 @@ block body %}
   {% for citation in citations %}
     <li class="citation-item">
       <a id="citation-item-link" href="/citations/{{ citation.citation_id }}">
+        <div class="citation-info">
         <div>
           <h3 class="citation-header">{{ citation.title }}</h3>
           <p class="citation-author">By {{ citation.author }}</p>
+        </div>
+        {% if citation.tags %}
+        <div class="citation-tags">
+          {% for tag in citation.tags %}
+          <span class="tag">{{ tag.name }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
         </div>
         <div class="citation-item-bottom">
           <p class="citation-publisher">Published By {{ citation.publisher }}</p>
@@ -76,10 +116,12 @@ block body %}
 {% endif %}
 
 <script>
-  const form = document.getElementById("search-form");
+  const searchForm = document.getElementById("search-form");
   const search = document.getElementById("query");
   const sort = document.getElementById("sort");
   const citationType = document.getElementById("citation_type");
+  const tagForm = document.getElementById("tag-form");
+  const tagCheckBoxes = document.querySelectorAll(".tag-checkbox");
   let searchTimeout;
 
   search.focus();
@@ -88,17 +130,17 @@ block body %}
   search.addEventListener("input", () => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-      form.submit();
+      searchForm.submit();
     }, 500);
   });
 
-  sort.addEventListener("input", () =>
-    form.submit()
-  );
-
-  citationType.addEventListener("input", () =>
-    form.submit()
-  );
+  sort.addEventListener("change", () => searchForm.submit());
+  citationType.addEventListener("change", () => searchForm.submit());
+  tagCheckBoxes.forEach(checkBox => {
+    checkBox.addEventListener("change", () => {
+      tagForm.submit();
+    });
+  });
 </script>
 
 {% endblock %}

@@ -27,6 +27,9 @@
   --button-primary-bg: light-dark(#007bff, #0d8cff);
   --button-primary-hover: light-dark(#0066d6, #0a70cc);
 
+  --tag-bg: light-dark(#e0e7ff, #2e3a5f);
+  --tag-text: light-dark(#4338ca, #a5b4fc);
+
   --shadow-sm: light-dark(
     0 2px 4px rgba(0, 0, 0, 0.1),
     0 2px 4px rgba(0, 0, 0, 0.3)
@@ -69,6 +72,7 @@ h5 {
 }
 
 .wrapper {
+  margin-bottom: 16x;
   flex-grow: 1;
   max-width: 1000px;
   display: flex;
@@ -151,7 +155,6 @@ nav {
 }
 
 form {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -237,6 +240,97 @@ button.secondary:hover {
   color: var(--button-primary-hover);
 }
 
+.tag-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.tag-filter {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 2px solid var(--border-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tag-filter:hover {
+  border-color: var(--border-hover);
+}
+
+.tag-filter.active {
+  background-color: var(--button-primary-bg);
+  color: white;
+  border-color: var(--button-primary-bg);
+}
+
+.tags-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tag-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+}
+
+.tag-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tag-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.tag-checkbox div {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 2px solid var(--border-primary);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.tag-checkbox input[type="checkbox"]:checked + div {
+  background-color: var(--button-primary-bg);
+  color: white;
+  border-color: var(--button-primary-bg);
+}
+
+.tag-checkbox input[type="checkbox"]:hover + div {
+  border-color: var(--border-hover);
+}
+
+.tag-checkbox input[type="checkbox"]:focus + div {
+  box-shadow: var(--focus-shadow);
+}
+
+.new-tag-input {
+  display: flex;
+  gap: 8px;
+}
+
+.new-tag-input input {
+  flex: 1;
+}
+
 .form-buttons {
   display: flex;
   gap: 16px;
@@ -250,6 +344,13 @@ button.secondary:hover {
 #search-form {
   flex-direction: row;
   gap: 8px;
+  flex-grow: 1;
+}
+
+#download-form {
+  flex-direction: row;
+  width: auto;
+  flex-shrink: 0;
 }
 
 .form-items {
@@ -363,6 +464,12 @@ label {
   background-color: var(--bg-secondary);
 }
 
+.citation-info {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
 .citation-header {
   margin: 0px;
 }
@@ -375,6 +482,28 @@ label {
 .citation-item-bottom {
   display: flex;
   justify-content: space-between;
+}
+
+.citation-tags {
+  max-width: 400px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: end;
+}
+
+#citation-page-tags {
+  justify-content: start;
+}
+
+.tag {
+  padding: 4px 12px;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .citation-publisher,
