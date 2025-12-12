@@ -12,15 +12,14 @@ At start there are no citations
     Page Should Contain  No citations.
 
 First citation can be added
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  refactoring  design
 
 Second citation can be added
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
-
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
-    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  refactoring  design
+    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  practices  clean-code
 
 Citation requires Citation Type
     Go To  ${HOME_URL}
@@ -58,8 +57,10 @@ Citation can be added with doi link
     Textfield Value Should Be  publisher  ACM
     Textfield Value Should Be  year  2012
     Textfield Value Should Be  doi  10.1145/2380552.2380613
+    Input Text  new-tag  new-research
+    Click Button  Add Tag
     Click Button  Add
-    Check page contains citation  Matti Luukkainen  Three years of design-based research to reform a software engineering curriculum  ACM  2012
+    Check page contains citation  Matti Luukkainen  Three years of design-based research to reform a software engineering curriculum  ACM  2012  new-research
 
 Citation with invalid DOI should show error message
     Go To  ${HOME_URL}

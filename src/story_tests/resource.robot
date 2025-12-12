@@ -30,23 +30,30 @@ Reset Citations
     Go To  ${RESET_URL}
 
 Add Citation
-    [Arguments]  ${citation_type}  ${author}  ${title}  ${publisher}  ${year}  ${doi}
+    [Arguments]  ${citation_type}  ${author}  ${title}  ${publisher}  ${year}  ${doi}  @{tags}
     Go To  ${HOME_URL}
     Click Link  New citation
     Select From List By Value  citation_type  ${citation_type}
-    Input Text  author      ${author}
-    Input Text  title       ${title}
-    Input Text  publisher   ${publisher}
-    Input Text  year        ${year}
-    Input Text  doi        ${doi}
+    Input Text  author  ${author}
+    Input Text  title  ${title}
+    Input Text  publisher  ${publisher}
+    Input Text  year  ${year}
+    Input Text  doi  ${doi}
+    FOR  ${tag}  IN  @{tags}
+        Input Text  new-tag  ${tag}
+        Click Button  Add Tag
+    END
     Click Button  add_citation_button
 
 Check page contains citation
-    [Arguments]  ${author}  ${title}  ${publisher}  ${year}
+    [Arguments]  ${author}  ${title}  ${publisher}  ${year}  @{tags}
     Page Should Contain  ${author}
     Page Should Contain  ${title}
     Page Should Contain  ${publisher}
     Page Should Contain  ${year}
+    FOR  ${tag}  IN  @{tags}
+        Page Should Contain  ${tag}
+    END
 
 Dismiss notification
     Wait Until Element Is Visible  id=close-notification-icon
