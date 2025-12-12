@@ -55,3 +55,16 @@ Filter by citation type book should return book citations
     Page Should Not Contain  Code Generation and Optimization
     Page Should Not Contain  Linux Kernel Development
     Page Should Not Contain  Advanced Software Architecture Patterns
+
+Filter by tag architecture should return citations with architecture tag
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  programming  refactoring
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  programming  code-quality
+    Add citation  article  Susan L. Graham  Code Generation and Optimization  ACM Computing Surveys  2015  10.1145/2854838  programming  performance
+    Add citation  inproceedings  Linus Torvalds  Linux Kernel Development  Proceedings of the Linux Symposium  2005  10.5281/2555028  programming  architecture
+    Add citation  phdthesis  Jane Smith  Advanced Software Architecture Patterns  University of Technology  2021  10.5281/4567890  design  architecture
+    Select Checkbox  architecture
+    Check page contains citation  Linus Torvalds  Linux Kernel Development  Proceedings of the Linux Symposium  2005
+    Check page contains citation  Jane Smith  Advanced Software Architecture Patterns  University of Technology  2021
+    Page Should Not Contain  Refactoring: Improving the Design of Existing Code
+    Page Should Not Contain  Clean Code: A Handbook of Agile Software Craftsmanship
+    Page Should Not Contain  Code Generation and Optimization
