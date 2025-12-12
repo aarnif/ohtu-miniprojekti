@@ -19,7 +19,7 @@ Search with matching query should return citation
     Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
     Input Text  query  ref
     Sleep  1s
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  refactoring  design
     Page Should Not Contain  Clean Code: A Handbook of Agile Software Craftsmanship
 
 Search with number 20 should return all citations from years 2000-2025
@@ -28,8 +28,8 @@ Search with number 20 should return all citations from years 2000-2025
     Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  10.1145/1234567.1234568  design  architecture
     Input Text  query  20
     Sleep  1s
-    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
-    Check page contains citation  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003
+    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  practices  clean-code
+    Check page contains citation  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  design  architecture
     Page Should Not Contain  Refactoring: Improving the Design of Existing Code
 
 Search with matching doi should return citation
@@ -38,7 +38,7 @@ Search with matching doi should return citation
     Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  10.1145/1234567.1234568  design  architecture
     Input Text  query  https://doi.org/10.1145/2380552.2380613
     Sleep  1s
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  refactoring  design
     Page Should Not Contain  Clean Code: A Handbook of Agile Software Craftsmanship
     Page Should Not Contain  Domain-Driven Design
 
@@ -50,8 +50,8 @@ Filter by citation type book should return book citations
     Add citation  phdthesis  Jane Smith  Advanced Software Architecture Patterns  University of Technology  2021  10.5281/4567890  architecture  patterns
     Select From List By Value  citation_type  book
     Execute JavaScript  document.getElementById('citation_type').dispatchEvent(new Event('input', { bubbles: true }))
-    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
-    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
+    Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  refactoring  design
+    Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  practices  clean-code
     Page Should Not Contain  Code Generation and Optimization
     Page Should Not Contain  Linux Kernel Development
     Page Should Not Contain  Advanced Software Architecture Patterns

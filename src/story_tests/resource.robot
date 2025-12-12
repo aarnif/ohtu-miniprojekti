@@ -46,11 +46,14 @@ Add Citation
     Click Button  add_citation_button
 
 Check page contains citation
-    [Arguments]  ${author}  ${title}  ${publisher}  ${year}
+    [Arguments]  ${author}  ${title}  ${publisher}  ${year}  @{tags}
     Page Should Contain  ${author}
     Page Should Contain  ${title}
     Page Should Contain  ${publisher}
     Page Should Contain  ${year}
+    FOR  ${tag}  IN  @{tags}
+        Page Should Contain  ${tag}
+    END
 
 Dismiss notification
     Wait Until Element Is Visible  id=close-notification-icon
