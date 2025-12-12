@@ -17,6 +17,16 @@ def test_unit(ctx):
 
 
 @task
+def coverage(ctx):
+    ctx.run("coverage run --branch -m pytest", pty=True)
+
+
+@task(coverage)
+def coverage_report(ctx):
+    ctx.run("coverage report", pty=True)
+
+
+@task
 def test_e2e(ctx):
     ctx.run("robot --variable HEADLESS:true src/story_tests", pty=True)
 
