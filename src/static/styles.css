@@ -285,6 +285,7 @@ button.secondary:hover {
 }
 
 .tag-checkbox {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -293,7 +294,8 @@ button.secondary:hover {
 }
 
 .tag-checkbox input[type="checkbox"] {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 
 .tag-checkbox div {
