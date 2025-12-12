@@ -8,24 +8,24 @@ Library   OperatingSystem
 
 *** Test Cases ***
 Search with non-matching query should return no citations
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
     Input Text  query  asdasd
     Sleep  1s
     Page Should Contain  No citations.
 
 Search with matching query should return citation
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
     Input Text  query  ref
     Sleep  1s
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Page Should Not Contain  Clean Code: A Handbook of Agile Software Craftsmanship
 
 Search with number 20 should return all citations from years 2000-2025
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
-    Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  10.1145/1234567.1234568
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
+    Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  10.1145/1234567.1234568  design  architecture
     Input Text  query  20
     Sleep  1s
     Check page contains citation  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008
@@ -33,9 +33,9 @@ Search with number 20 should return all citations from years 2000-2025
     Page Should Not Contain  Refactoring: Improving the Design of Existing Code
 
 Search with matching doi should return citation
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
-    Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  10.1145/1234567.1234568
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
+    Add citation  book  Eric Evans  Domain-Driven Design: Tackling Complexity in the Heart of Software  Addison-Wesley  2003  10.1145/1234567.1234568  design  architecture
     Input Text  query  https://doi.org/10.1145/2380552.2380613
     Sleep  1s
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
@@ -43,11 +43,11 @@ Search with matching doi should return citation
     Page Should Not Contain  Domain-Driven Design
 
 Filter by citation type book should return book citations
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
-    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473
-    Add citation  article  Susan L. Graham  Code Generation and Optimization  ACM Computing Surveys  2015  10.1145/2854838
-    Add citation  inproceedings  Linus Torvalds  Linux Kernel Development  Proceedings of the Linux Symposium  2005  10.5281/2555028
-    Add citation  phdthesis  Jane Smith  Advanced Software Architecture Patterns  University of Technology  2021  10.5281/4567890
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
+    Add citation  book  Robert C. Martin  Clean Code: A Handbook of Agile Software Craftsmanship  Prentice Hall  2008  10.1145/1869452.1869473  practices  clean-code
+    Add citation  article  Susan L. Graham  Code Generation and Optimization  ACM Computing Surveys  2015  10.1145/2854838  optimization  code-generation
+    Add citation  inproceedings  Linus Torvalds  Linux Kernel Development  Proceedings of the Linux Symposium  2005  10.5281/2555028  kernel  linux
+    Add citation  phdthesis  Jane Smith  Advanced Software Architecture Patterns  University of Technology  2021  10.5281/4567890  architecture  patterns
     Select From List By Value  citation_type  book
     Execute JavaScript  document.getElementById('citation_type').dispatchEvent(new Event('input', { bubbles: true }))
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999

@@ -7,7 +7,7 @@ Library   OperatingSystem
 
 *** Test Cases ***
 Citation can be deleted
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -16,7 +16,7 @@ Citation can be deleted
     Page Should Contain  No citations.
 
 Citation deletion can be cancelled
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -25,7 +25,7 @@ Citation deletion can be cancelled
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
 
 Citation deletion shows confirmation box
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -33,7 +33,7 @@ Citation deletion shows confirmation box
     Page Should Contain  Delete Citation?
 
 Deletion confirmation notification can be dismissed
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -43,7 +43,7 @@ Deletion confirmation notification can be dismissed
     Dismiss notification
 
 Deletion confirmation notification is not visible after dismissing
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link

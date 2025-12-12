@@ -7,7 +7,7 @@ Library   OperatingSystem
 
 *** Test Cases ***
 Citation can be edited
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -17,7 +17,7 @@ Citation can be edited
     Check page contains citation  Martin Fowler  Edited title  Addison-Wesley  1999
 
 Citation editing can be cancelled
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -27,7 +27,7 @@ Citation editing can be cancelled
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
 
 Citation editing shows confirmation notification
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -38,7 +38,7 @@ Citation editing shows confirmation notification
     Page should contain  Citation edited successfully!
 
 Confirmation notification can be dismissed
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
@@ -50,7 +50,7 @@ Confirmation notification can be dismissed
     Dismiss notification
 
 Confirmation notification is not visible after dismissing
-    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613
+    Add citation  book  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999  10.1145/2380552.2380613  refactoring  design
     Check page contains citation  Martin Fowler  Refactoring: Improving the Design of Existing Code  Addison-Wesley  1999
     Go To  ${HOME_URL}
     Click Link  citation-item-link
