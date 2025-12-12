@@ -46,3 +46,19 @@
 
 - Projekti eteni todella paljon ja nopeasti
 - Kaikki ovat olleet läsnä tapaamisesti
+
+## Viikko 4:
+
+### Mad:
+
+- Kommunikaatio ryhmän jäsenten välillä ei aina toiminut
+
+### Sad:
+
+- Kaikkia tavoitteita ei saavutettu
+- Välillä tuli tehtyä liikaa työtunteja
+
+### Glad:
+
+- Esitys meni hyvin
+- Lopputulos oli sovelluksen suhteen hyvä
