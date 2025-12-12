@@ -57,8 +57,10 @@ Citation can be added with doi link
     Textfield Value Should Be  publisher  ACM
     Textfield Value Should Be  year  2012
     Textfield Value Should Be  doi  10.1145/2380552.2380613
+    Input Text  new-tag  new-research
+    Click Button  Add Tag
     Click Button  Add
-    Check page contains citation  Matti Luukkainen  Three years of design-based research to reform a software engineering curriculum  ACM  2012
+    Check page contains citation  Matti Luukkainen  Three years of design-based research to reform a software engineering curriculum  ACM  2012  new-research
 
 Citation with invalid DOI should show error message
     Go To  ${HOME_URL}
